@@ -1,7 +1,7 @@
 import pwd
 import os
 import re
-from bin import config
+from src import config
 
 # aliases for path to use later on
 user = pwd.getpwuid(os.getuid())[0]

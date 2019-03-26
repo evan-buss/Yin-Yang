@@ -13,14 +13,14 @@
 
 import os
 import sys
-from bin import gui
+from src import gui
 import threading
 import time
 import pwd
 import datetime
 import subprocess
-from bin.plugins import kde, gtk, wallpaper, vscode
-from bin import config
+from src.plugins import kde, gtkkde, wallpaper, vscode, gtk
+from src import config
 
 
 # aliases for path to use later on
@@ -36,16 +36,18 @@ class Yang(threading.Thread):
         self.threadID = threadID
 
     def run(self):
+        if config.get("codeEnabled"):
+            vscode.switchToLight()
         if config.get("kdeEnabled"):
             kde.switchToLight()
         if config.get("wallpaperEnabled"):
             wallpaper.switchToLight()
-        if config.get("codeEnabled"):
-            vscode.switchToLight()
-        if config.get("gtkEnabled"):
+        if config.get("gtkEnabled") and config.get("desktop") == "kde":
+            gtkkde.switchToLight()
+        if config.get("gtkEnabled") and config.get("desktop") == "gtk":
             gtk.switchToLight()
         playSound("./assets/light.wav")
-
+ 
 
 class Yin(threading.Thread):
     def __init__(self, threadID):
@@ -53,13 +55,21 @@ class Yin(threading.Thread):
         self.threadID = threadID
 
     def run(self):
-        if config.get("kdeEnabled"):
-            kde.switchToDark()
-        if config.get("wallpaperEnabled"):
-            wallpaper.switchToDark()
         if config.get("codeEnabled"):
             vscode.switchToDark()
-        if config.get("gtkEnabled"):
+            
+        if config.get("kdeEnabled"):
+            kde.switchToDark()
+
+        if config.get("wallpaperEnabled"):
+            wallpaper.switchToDark()
+
+        # kde support
+        if config.get("gtkEnabled") and config.get("desktop") == "kde":
+            gtkkde.switchToDark()
+
+        # gnome and budgie support
+        if config.get("gtkEnabled") and config.get("desktop") == "gtk":
             gtk.switchToDark()
         playSound("./assets/dark.wav")
 

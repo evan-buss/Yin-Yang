@@ -1,13 +1,12 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'bin/ui/mainwindow.ui'
+# Form implementation generated from reading ui file 'ui/mainwindow.ui'
 #
-# Created by: PyQt5 UI code generator 5.12
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -23,7 +22,7 @@ class Ui_MainWindow(object):
         MainWindow.setMaximumSize(QtCore.QSize(300, 360))
         MainWindow.setBaseSize(QtCore.QSize(300, 360))
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("assets/yin-yang-logo.svg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("assets/icon.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         MainWindow.setWindowIcon(icon)
         self.centralWidget = QtWidgets.QWidget(MainWindow)
         self.centralWidget.setObjectName("centralWidget")
@@ -35,13 +34,23 @@ class Ui_MainWindow(object):
         self.verticalLayout.setSpacing(6)
         self.verticalLayout.setObjectName("verticalLayout")
         self.yinyang_img = QtWidgets.QLabel(self.verticalLayoutWidget)
-        self.yinyang_img.setMaximumSize(QtCore.QSize(64, 64))
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(128)
+        sizePolicy.setVerticalStretch(128)
+        sizePolicy.setHeightForWidth(self.yinyang_img.sizePolicy().hasHeightForWidth())
+        self.yinyang_img.setSizePolicy(sizePolicy)
+        self.yinyang_img.setMinimumSize(QtCore.QSize(90, 90))
+        self.yinyang_img.setMaximumSize(QtCore.QSize(90, 90))
         self.yinyang_img.setSizeIncrement(QtCore.QSize(0, 0))
+        self.yinyang_img.setBaseSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setPointSize(20)
+        self.yinyang_img.setFont(font)
         self.yinyang_img.setText("")
         self.yinyang_img.setTextFormat(QtCore.Qt.RichText)
-        self.yinyang_img.setPixmap(QtGui.QPixmap("assets/yin-yang-logo.svg"))
+        self.yinyang_img.setPixmap(QtGui.QPixmap("assets/yin-yang.svg"))
         self.yinyang_img.setScaledContents(True)
-        self.yinyang_img.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.yinyang_img.setAlignment(QtCore.Qt.AlignCenter)
         self.yinyang_img.setObjectName("yinyang_img")
         self.verticalLayout.addWidget(self.yinyang_img, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -103,3 +112,4 @@ class Ui_MainWindow(object):
         self.label_2.setText(_translate("MainWindow", "Dark:"))
         self.dark_time.setDisplayFormat(_translate("MainWindow", "HH:mm"))
         self.settings_push.setText(_translate("MainWindow", "Settings"))
+

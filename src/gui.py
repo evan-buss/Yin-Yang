@@ -6,10 +6,10 @@ import sys
 from qtpy import QtWidgets
 from PyQt5.QtCore import QTime
 from PyQt5.QtWidgets import QFileDialog
-from bin.ui.mainwindow import Ui_MainWindow
-from bin.ui.settings import Ui_MainWindow as Ui_SettingsWindow
-from bin import yin_yang
-from bin import config
+from src.ui.mainwindow import Ui_MainWindow
+from src.ui.settings import Ui_MainWindow as Ui_SettingsWindow
+from src import yin_yang
+from src import config
 
 
 class SettingsWindow(QtWidgets.QMainWindow):
@@ -64,14 +64,15 @@ class SettingsWindow(QtWidgets.QMainWindow):
         # syncing all fields and checkboxes with config
         # ---- KDE -----
         # reads out all kde themes and displays them inside a combobox
-        self.getKdeThemes()
-        self.ui.kde_checkbox.setChecked(config.get("kdeEnabled"))
-        self.ui.kde_combo_dark.setEnabled(config.get("kdeEnabled"))
-        self.ui.kde_combo_light.setEnabled(config.get("kdeEnabled"))
-        index_light = self.ui.kde_combo_light.findText(config.get("kdeLightTheme"))
-        self.ui.kde_combo_light.setCurrentIndex(index_light)
-        index_dark = self.ui.kde_combo_dark.findText(config.get("kdeDarkTheme"))
-        self.ui.kde_combo_dark.setCurrentIndex(index_dark)
+        if (config.get("kdeEnabled")):
+            self.getKdeThemes()
+            self.ui.kde_checkbox.setChecked(config.get("kdeEnabled"))
+            self.ui.kde_combo_dark.setEnabled(config.get("kdeEnabled"))
+            self.ui.kde_combo_light.setEnabled(config.get("kdeEnabled"))
+            index_light = self.ui.kde_combo_light.findText(config.get("kdeLightTheme"))
+            self.ui.kde_combo_light.setCurrentIndex(index_light)
+            index_dark = self.ui.kde_combo_dark.findText(config.get("kdeDarkTheme"))
+            self.ui.kde_combo_dark.setCurrentIndex(index_dark)
         # ---- VSCode ----
         self.ui.code_line_light.setText(config.get("codeLightTheme"))
         self.ui.code_line_light.setEnabled(config.get("codeEnabled"))
@@ -101,13 +102,18 @@ class SettingsWindow(QtWidgets.QMainWindow):
         config.update("wallpaperDarkTheme", fileName)
 
     def getKdeThemes(self):
-        # asks the system what themes are available
-        ugly_themes = subprocess.check_output(["lookandfeeltool", "-l"])
-        print(ugly_themes)
-        pretty_themes = re.findall("[b]?[']?n?([A-z]*.[A-z]*.[A-z]*-?.[A-z]*.[A-z]*)\\\\", str(ugly_themes))
-        for theme in pretty_themes:
-            self.ui.kde_combo_light.addItem(theme)
-            self.ui.kde_combo_dark.addItem(theme)
+
+
+        if (config.get("desktop") == "kde"):
+            # asks the system what themes are available
+            ugly_themes = subprocess.check_output(["lookandfeeltool", "-l"])
+            print(ugly_themes)
+            pretty_themes = re.findall("[b]?[']?n?([A-z]*.[A-z]*.[A-z]*-?.[A-z]*.[A-z]*)\\\\", str(ugly_themes))
+            for theme in pretty_themes:
+                self.ui.kde_combo_light.addItem(theme)
+                self.ui.kde_combo_dark.addItem(theme)
+        else:
+            subprocess.run(["notify-send","It looks like you are not running KDE"])
 
     def center(self):
         frameGm = self.frameGeometry()
@@ -116,6 +122,7 @@ class SettingsWindow(QtWidgets.QMainWindow):
         self.move(frameGm.topLeft())
 
     def toggleKdeFields(self):
+        self.getKdeThemes()
         checked = self.ui.kde_checkbox.isChecked()
         self.ui.kde_combo_light.setEnabled(checked)
         self.ui.kde_combo_dark.setEnabled(checked)
@@ -193,19 +200,21 @@ class MainWindow(QtWidgets.QMainWindow):
     def toggleLight(self):
         yin_yang.switchToLight()
         self.syncWithConfig()
-        self.restart()
+        # experimental
+        # self.restart()
 
     def toggleDark(self):
         yin_yang.switchToDark()
         self.syncWithConfig()
-        self.restart()
+        # self.restart()
 
-    def restart(self):
-        """Restarts the current program.
-        Note: this function does not return. Any cleanup action (like
-        saving data) must be done before calling this function."""
-        python = sys.executable
-        os.execl(python, python, * sys.argv)
+    # no needed since QT is now used system wise instead of python wise
+    # def restart(self):
+    #     """Restarts the current program.
+    #     Note: this function does not return. Any cleanup action (like
+    #     saving data) must be done before calling this function."""
+    #     python = sys.executable
+    #     os.execl(python, python, * sys.argv)
 
     def setCorrectTime(self):
         new_config = config.getConfig()

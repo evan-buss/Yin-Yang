@@ -60,10 +60,22 @@
      </property>
      <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
       <widget class="QLabel" name="yinyang_img">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+         <horstretch>128</horstretch>
+         <verstretch>128</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="minimumSize">
+        <size>
+         <width>80</width>
+         <height>80</height>
+        </size>
+       </property>
        <property name="maximumSize">
         <size>
-         <width>64</width>
-         <height>64</height>
+         <width>80</width>
+         <height>256</height>
         </size>
        </property>
        <property name="sizeIncrement">
@@ -71,6 +83,17 @@
          <width>0</width>
          <height>0</height>
         </size>
+       </property>
+       <property name="baseSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
        </property>
        <property name="text">
         <string/>
@@ -82,10 +105,10 @@
         <pixmap>../../../../yin-yang-logo.svg</pixmap>
        </property>
        <property name="scaledContents">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="alignment">
-        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+        <set>Qt::AlignCenter</set>
        </property>
       </widget>
      </item>

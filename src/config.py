@@ -2,6 +2,8 @@ import json
 import pwd
 import os
 import pathlib
+import re
+import subprocess
 
 # aliases for path to use later on
 user = pwd.getpwuid(os.getuid())[0]
@@ -12,18 +14,16 @@ def exists():
     # returns True or False wether Config exists or note
     return os.path.isfile(path+"/yin_yang/yin_yang.json")
 
-# def getEditor():
-#     print(path)
-#     # checks which editor is currently in use
-#     if (os.path.isdir(path+"VSCodium/User/")):
-#         editor = "VSCodium"
-#         return editor
-#
-#     if (os.path.isdir(path+"Code - OSS/User/")):
-#         editor = "Code - OSS"
-#         return editor
-#     # if no editor is used
-#     return ""
+def getDesktop():
+    word = str(subprocess.check_output(["w"]))
+    regexp = re.compile(r'gnome')
+    if regexp.search(word):
+        return "gtk"
+    regexp = re.compile(r'kde')
+    if regexp.search(word):
+        return "kde"
+    return "unknown"
+    
 
 
 # generate path for yin-yang if there is none this will be skipped
@@ -33,6 +33,7 @@ pathlib.Path(path+"/yin_yang").mkdir(parents=True, exist_ok=True)
 # if there is no config generate a generic one
 config = {}
 config["version"] = "2.0"
+config["desktop"] = getDesktop()
 config["schedule"] = False
 config["switchToDark"] = "20:00"
 config["switchToLight"] = "07:00"
@@ -40,12 +41,15 @@ config["running"] = False
 config["theme"] = ""
 config["codeLightTheme"] = "Default Light+"
 config["codeDarkTheme"] = "Default Dark+"
-config["codeEnabled"] = True
+config["codeEnabled"] = False
 config["kdeLightTheme"] = "org.kde.breeze.desktop"
 config["kdeDarkTheme"] = "org.kde.breezedark.desktop"
-config["kdeEnabled"] = True
+config["kdeEnabled"] = False
 config["gtkLightTheme"] = ""
 config["gtkDarkTheme"] = ""
+config["atomLightTheme"] = ""
+config["atomDarkTheme"] = ""
+config["atomEnabled"] = False
 config["gtkEnabled"] = False
 config["wallpaperLightTheme"] = ""
 config["wallpaperDarkTheme"] = ""

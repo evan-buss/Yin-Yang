@@ -1,5 +1,5 @@
 import subprocess
-from bin import config
+from src import config
 
 
 def switchToLight():

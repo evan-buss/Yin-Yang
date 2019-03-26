@@ -1,4 +1,4 @@
-from bin import config
+from src import config
 import os
 import pwd
 import json
