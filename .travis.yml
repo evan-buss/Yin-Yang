@@ -26,3 +26,6 @@ install:
 
 script:
   - houston ci
+    --type system-app
+    --name-domain com.github.evan-buss.yin-yang
+    --name-human Yin and Yang

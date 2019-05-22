@@ -5,4 +5,5 @@ build-ui-*
 .vscode
 src/build.py
 setup.py
-
+*~
+build/
