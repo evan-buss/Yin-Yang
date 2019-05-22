@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Yin-Yang
+GenericName=Theme Switcher
+Comment=Application theme switcher
+Categories=Utility;Settings;
+Exec=com.github.evan-buss.yin-yang
+Icon=text-x-copying
+Terminal=false
+Type=Application
+Keywords=Yin;Yang;YinYang;theme;switcher;
+X-GNOME-UsesNotifications=true

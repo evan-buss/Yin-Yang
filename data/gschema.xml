@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema path="/com/github/evan-buss/yin-yang/" id="com.github.evan-buss.yin-yang">
+    <key name="useless-setting" type="b">
+      <default>false</default>
+      <summary>Useless Setting</summary>
+      <description>Whether the useless switch is toggled</description>
+    </key>
+  </schema>
+</schemalist>
