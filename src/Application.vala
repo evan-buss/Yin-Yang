@@ -19,77 +19,67 @@
 *
 * Authored by: Evan Buss <evan.buss28@gmail.com>
 */
+namespace YinYang {
 
-public class MyApp : Gtk.Application {
+    public class YinYangApp : Gtk.Application {
 
-    public MyApp () {
-        Object (
-            application_id: "com.github.evan-buss.yin-yang",
-            flags: ApplicationFlags.FLAGS_NONE
-        );
-    }
+        private static YinYangApp app;
+        private YinYangWindow window = null;
+        private Settings settings;
+        private Gtk.Settings gtk_settings;
 
-    protected override void activate () {
-        var settings = new GLib.Settings ("com.github.evan-buss.yin-yang");
-        var main_window = new Gtk.ApplicationWindow (this);
-        main_window.default_height = 300;
-        main_window.default_width = 300;
-        main_window.title = "Hello World";
+        public YinYangApp () {
+            Object (
+                application_id: "com.github.evan-buss.yin-yang",
+                flags: ApplicationFlags.FLAGS_NONE
+            );
+            gtk_settings = Gtk.Settings.get_default ();
+            settings = new GLib.Settings ("com.github.evan-buss.yin-yang");
+        }
 
-        var useless_switch = new Gtk.Switch ();
-        settings.bind ("useless-setting", useless_switch, "active", GLib.SettingsBindFlags.DEFAULT);
-
-
-        var grid = new Gtk.Grid ();
-        grid.orientation = Gtk.Orientation.VERTICAL;
-        grid.row_spacing = 6;
-
-        var title_label = new Gtk.Label (_("Notifications"));
-        var show_button = new Gtk.Button.with_label (_("Show"));
-        show_button.clicked.connect (() => {
-            var notification = new Notification (_("Hello World"));
-            var icon = new GLib.ThemedIcon ("dialog-warning");
-            notification.set_icon (icon);
-            notification.set_body (_("This is my first notification!"));
-            this.send_notification ("com.github.yourusername.yourrepositoryname", notification);
-        });
-
-        var replace_button = new Gtk.Button.with_label (_("Replace"));
-        grid.add (replace_button);
-
-        var entry = Unity.LauncherEntry.get_for_desktop_id ("Yin-Yang.desktop");
-        //  print (entry);
+        protected override void activate () {
+            window = new YinYangWindow();
+            window.default_height = 300;
+            window.default_width = 300;
 
 
-        replace_button.clicked.connect (() => {
+            var headerbar = new Gtk.HeaderBar ();
+            headerbar.get_style_context ().add_class ("default-decoration");
+            headerbar.show_close_button = true;
+            window.set_titlebar (headerbar);
 
-            entry.count_visible = true;
-            entry.count = 99;
+            // Non-functional for now.. Need to decide what course I am going to take
+            var mode_switch = new Granite.ModeSwitch.from_icon_name ("display-brightness-symbolic", "weather-clear-night-symbolic");
+            mode_switch.primary_icon_tooltip_text = ("Light background");
+            mode_switch.secondary_icon_tooltip_text = ("Dark background");
+            mode_switch.valign = Gtk.Align.CENTER;
 
-            entry.progress_visible = true;
-            entry.progress = 0.2f;
+            var settings_showing = false;
+            var settings_button = new Gtk.Button.from_icon_name ("open-menu");
+            settings_button.margin = 4;
 
-            //  var notification = new Notification (_("Hello Again"));
-            //  notification.set_body (_("This is my second Notification!"));
+            // Header Bar Settings Button should toggle the settings revealer
+            settings_button.clicked.connect (() => {
+                if (settings_showing) {
+                    window.settings_revealer.set_reveal_child(false);
+                } else {
+                    window.settings_revealer.set_reveal_child(true);
+                }
+                settings_showing = !settings_showing;
+            });
 
-            //  var icon = new GLib.ThemedIcon ("dialog-warning");
-            //  notification.set_icon (icon);
 
-            //  this.send_notification ("com.github.yourusername.yourrepositoryname2", notification);
-        });
+            headerbar.pack_start (settings_button);
+            headerbar.pack_end (mode_switch);
 
-        grid.add (title_label);
-        grid.add (show_button);
-        grid.add (useless_switch);
+            window.title = "Yin and Yang";
+            window.set_application (this);
+            window.show_all ();
+        }
 
-        main_window.add (grid);
-        main_window.show_all ();
-
-        main_window.show_all ();
-    }
-
-    public static int main (string[] args) {
-        var app = new MyApp ();
-        return app.run (args);
+        public static int main (string[] args) {
+            app = new YinYangApp ();
+            return app.run (args);
+        }
     }
 }

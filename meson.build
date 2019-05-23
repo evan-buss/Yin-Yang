@@ -11,9 +11,12 @@ add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), la
 executable(
     meson.project_name(),
     'src/Application.vala',
+    'src/YinYangWindow.vala',
+    'src/Widgets/SettingsView.vala',
     dependencies: [
         dependency('gtk+-3.0'),
-        dependency('unity')
+        dependency('unity'),
+        dependency('granite')
     ],
     install: true
 )
