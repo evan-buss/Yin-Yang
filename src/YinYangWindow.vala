@@ -25,23 +25,51 @@ namespace YinYang {
     public class YinYangWindow : Gtk.ApplicationWindow {
 
         // private Settings settings;
-        public Gtk.Revealer settings_revealer;
+        public Views.MainView main_view;
+        public Views.SettingsView settings_view;
+        public Gtk.Button settings_button { get; construct; }
 
-        public YinYangWindow() {
+        public bool show_settings = false;
+
+        public YinYangWindow (Gtk.Button button) {
             Object (
-                resizable: false
+                resizable: false,
+                settings_button: button
+            );
+
+            var css_provider = new Gtk.CssProvider ();
+            css_provider.load_from_resource ("/com/github/evan-buss/yin-yang/css/style.css");
+
+            Gtk.StyleContext.add_provider_for_screen (
+                Gdk.Screen.get_default (),
+                css_provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
         }
 
         construct {
-            settings_revealer = new Gtk.Revealer ();
-            settings_revealer.set_transition_type (Gtk.RevealerTransitionType.CROSSFADE);
-            settings_revealer.set_transition_duration(1000);
-            var settings_view = new SettingsView ();
+            var stack = new Gtk.Stack ();
+            main_view = new Views.MainView (this);
+            settings_view = new Views.SettingsView ();
+            stack.add_named (main_view, "main");
+            stack.add_named (settings_view, "settings");
 
-            settings_revealer.add (settings_view);
+            settings_button.clicked.connect (() => {
+                //  Settings --> Main
+                if (stack.visible_child == main_view) {
+                    stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT);
+                    stack.set_visible_child (settings_view);
+                } else {
+                    // Main --> Settings
+                    stack.set_transition_type (Gtk.StackTransitionType.SLIDE_RIGHT);
+                    stack.set_visible_child (main_view);
+                }
+            });
 
-            add (settings_revealer);
+            add (stack);
+        }
+    }
+}
 
             //  settings = new GLib.Settings ("com.github.evan-buss.yin-yang");
 
@@ -57,7 +85,3 @@ namespace YinYang {
 
             // box.pack_start (primary_color_label);
             // box.pack_start (primary_color_button);
-
-        }
-    }
-}

@@ -1,0 +1,17 @@
+.make-white {
+    background-color:  #DEDEDE;
+    color: black;
+}
+
+
+/* .light-header > .left > .close {
+    background-color: black;
+} */
+
+.light-header > .vertical > .title {
+    color: black;
+}
+
+.light-body > .horizontal {
+    color: black;
+}

@@ -38,41 +38,23 @@ namespace YinYang {
         }
 
         protected override void activate () {
-            window = new YinYangWindow();
-            window.default_height = 300;
-            window.default_width = 300;
-
-
+            //  Construct headerbar
             var headerbar = new Gtk.HeaderBar ();
             headerbar.get_style_context ().add_class ("default-decoration");
             headerbar.show_close_button = true;
-            window.set_titlebar (headerbar);
 
-            // Non-functional for now.. Need to decide what course I am going to take
-            var mode_switch = new Granite.ModeSwitch.from_icon_name ("display-brightness-symbolic", "weather-clear-night-symbolic");
-            mode_switch.primary_icon_tooltip_text = ("Light background");
-            mode_switch.secondary_icon_tooltip_text = ("Dark background");
-            mode_switch.valign = Gtk.Align.CENTER;
-
-            var settings_showing = false;
             var settings_button = new Gtk.Button.from_icon_name ("open-menu");
             settings_button.margin = 4;
 
-            // Header Bar Settings Button should toggle the settings revealer
-            settings_button.clicked.connect (() => {
-                if (settings_showing) {
-                    window.settings_revealer.set_reveal_child(false);
-                } else {
-                    window.settings_revealer.set_reveal_child(true);
-                }
-                settings_showing = !settings_showing;
-            });
+            headerbar.pack_end (settings_button);
 
-
-            headerbar.pack_start (settings_button);
-            headerbar.pack_end (mode_switch);
-
+            //  Create a new window
+            window = new YinYangWindow (settings_button);
+            window.default_height = 400;
+            window.default_width = 300;
+            window.set_titlebar (headerbar);
             window.title = "Yin and Yang";
+
             window.set_application (this);
             window.show_all ();
         }

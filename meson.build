@@ -7,12 +7,24 @@ i18n = import('i18n')
 # Set our translation domain
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), language:'c')
 
+
+
+# Compile GResources
+gnome = import('gnome')
+gresource = gnome.compile_resources(
+    'as-resources', 'data/gresource.xml',
+    source_dir: 'data',
+    c_name: 'as'
+)
+
 # Create a new executable, list the files we want to compile, list the dependencies we need, and install
 executable(
     meson.project_name(),
     'src/Application.vala',
     'src/YinYangWindow.vala',
-    'src/Widgets/SettingsView.vala',
+    'src/Views/SettingsView.vala',
+    'src/Views/MainView.vala',
+    gresource,
     dependencies: [
         dependency('gtk+-3.0'),
         dependency('unity'),
