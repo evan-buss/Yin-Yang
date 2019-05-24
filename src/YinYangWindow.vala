@@ -24,32 +24,63 @@ namespace YinYang {
 
     public class YinYangWindow : Gtk.ApplicationWindow {
 
-        // private Settings settings;
         public Views.MainView main_view;
         public Views.SettingsView settings_view;
-        public Gtk.Button settings_button { get; construct; }
+        public Settings settings;
 
-        public bool show_settings = false;
-
-        public YinYangWindow (Gtk.Button button) {
+        public YinYangWindow () {
             Object (
                 resizable: false,
-                settings_button: button
+                default_width: 300,
+                default_height: 400,
+                window_position: Gtk.WindowPosition.CENTER
             );
+        }
 
+        construct {
+            /************************
+              Load Existing Preferences
+            ************************/
+            settings = new Settings ("com.github.evan-buss.yin-yang");
+            if (settings.get_boolean ("dark-mode")) {
+                Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
+            } else {
+                Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
+            }
+
+            /************************
+              Load External CSS
+            ************************/
             var css_provider = new Gtk.CssProvider ();
             css_provider.load_from_resource ("/com/github/evan-buss/yin-yang/css/style.css");
-
             Gtk.StyleContext.add_provider_for_screen (
                 Gdk.Screen.get_default (),
                 css_provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
-        }
 
-        construct {
+            /************************
+                Header Bar
+            ************************/
+            var headerbar = new Gtk.HeaderBar ();
+            headerbar.get_style_context ().add_class ("default-decoration");
+            headerbar.show_close_button = true;
+            set_titlebar (headerbar);
+            title = "Yin and Yang";
+
+            /************************
+              Settings Toggle Button
+            ************************/
+            var settings_button = new Gtk.Button.from_icon_name ("open-menu");
+            settings_button.valign = Gtk.Align.CENTER;
+
+            headerbar.pack_end (settings_button);
+
+            /************************
+              Create Views
+            ************************/
             var stack = new Gtk.Stack ();
-            main_view = new Views.MainView (this);
+            main_view = new Views.MainView (this, settings);
             settings_view = new Views.SettingsView ();
             stack.add_named (main_view, "main");
             stack.add_named (settings_view, "settings");
@@ -70,18 +101,3 @@ namespace YinYang {
         }
     }
 }
-
-            //  settings = new GLib.Settings ("com.github.evan-buss.yin-yang");
-
-            //  var useless_switch = new Gtk.Switch ();
-            //  settings.bind ("useless-setting", useless_switch, "active", GLib.SettingsBindFlags.DEFAULT);
-            // 255 });
-
-            // primary_color_button.color_set.connect (() => {
-            //     Granite.Widgets.Utils.set_color_primary (this, primary_color_button.rgba);
-            // });
-
-            // var box = new Gtk.VBox (true, 10);
-
-            // box.pack_start (primary_color_label);
-            // box.pack_start (primary_color_button);

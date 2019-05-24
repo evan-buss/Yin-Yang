@@ -25,36 +25,31 @@ namespace YinYang {
 
         private static YinYangApp app;
         private YinYangWindow window = null;
-        private Settings settings;
-        private Gtk.Settings gtk_settings;
 
         public YinYangApp () {
             Object (
                 application_id: "com.github.evan-buss.yin-yang",
                 flags: ApplicationFlags.FLAGS_NONE
             );
-            gtk_settings = Gtk.Settings.get_default ();
-            settings = new GLib.Settings ("com.github.evan-buss.yin-yang");
+        }
+
+        construct {
+            var quit_action = new SimpleAction ("quit", null);
+            quit_action.activate.connect (() => {
+                if (window != null) {
+                    window.destroy ();
+                }
+            });
+
+            add_action (quit_action);
+            set_accels_for_action ("app.quit", {"<Control>q", "Escape"});
         }
 
         protected override void activate () {
-            //  Construct headerbar
-            var headerbar = new Gtk.HeaderBar ();
-            headerbar.get_style_context ().add_class ("default-decoration");
-            headerbar.show_close_button = true;
-
-            var settings_button = new Gtk.Button.from_icon_name ("open-menu");
-            settings_button.margin = 4;
-
-            headerbar.pack_end (settings_button);
-
-            //  Create a new window
-            window = new YinYangWindow (settings_button);
-            window.default_height = 400;
-            window.default_width = 300;
-            window.set_titlebar (headerbar);
-            window.title = "Yin and Yang";
-
+            /************************
+                Construct Window
+            ************************/
+            window = new YinYangWindow ();
             window.set_application (this);
             window.show_all ();
         }

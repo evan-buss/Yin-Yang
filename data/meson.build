@@ -1,5 +1,7 @@
-
-message ('running meson data file')
+install_data(
+    join_paths('img', meson.project_name() + '.svg'),
+    install_dir: join_paths(get_option('datadir'), 'img')
+)
 
 install_data (
     'gschema.xml',

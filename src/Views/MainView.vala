@@ -3,49 +3,58 @@ namespace YinYang.Views {
     public class MainView : Gtk.Grid {
 
         public Gtk.ApplicationWindow window { get; construct; }
+        public Settings settings { get; construct; }
 
-        public MainView (Gtk.ApplicationWindow window) {
+        public MainView (Gtk.ApplicationWindow window, Settings settings) {
             Object (
                 halign: Gtk.Align.CENTER,
+                //  valign: Gtk.Align.CENTER,
                 margin: 8,
-                window: window
+                window: window,
+                settings: settings
             );
         }
 
         construct {
+
+            /************************
+              Application Logo
+            ************************/
+            Gdk.Pixbuf app_icon_pix_buf = null;
+            Gtk.Image app_icon = null;
+            try {
+                app_icon_pix_buf =
+                    new Gdk.Pixbuf.from_resource_at_scale ("/com/github/evan-buss/yin-yang/img/logo.svg", 150, -1, true);
+                app_icon = new Gtk.Image.from_pixbuf (app_icon_pix_buf);
+                app_icon.margin = 20;
+            } catch (Error e) {
+                debug ("unable to load logo image");
+            }
+            /************************
+              Mode Toggle Area
+            ************************/
             var header_label = new Gtk.Label ("Select Mode");
             header_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 
             var mode_toggle = new Granite.Widgets.ModeButton ();
             mode_toggle.append_text ("Light");
             mode_toggle.append_text ("Dark");
+            mode_toggle.set_active ( settings.get_boolean ("dark-mode") ? 1 : 0);
 
             mode_toggle.mode_changed.connect (() => {
-                //  Dark mode selected
                 if (mode_toggle.selected == 1) {
-                    make_dark ();
+                    settings.set_boolean ("dark-mode", true);
+                    Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
                 } else {
-                    //  Light Mode selected
-                    make_light ();
+                    settings.set_boolean ("dark-mode", false);
+                    Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
                 }
             });
 
-            attach (header_label, 0, 0, 1, 1);
-            attach (mode_toggle, 0, 1, 1, 1);
-        }
 
-        //  TODO: Make body text stand out on light background
-        //  FIXME: Figure out how to get the default color themes...
-        private void make_dark () {
-            window.get_style_context().remove_class ("make-white");
-            window.get_titlebar ().get_style_context ().add_class ("light-header");
-            Granite.Widgets.Utils.set_color_primary (window, {222, 222, 222, 255});
-        }
-
-        private void make_light () {
-            window.get_style_context().add_class ("make-white");
-            window.get_titlebar ().get_style_context ().remove_class ("light-header");
-            Granite.Widgets.Utils.set_color_primary (window, {0, 0, 0, 255});
+            attach (app_icon, 0, 0, 1, 1);
+            attach (header_label, 0, 1, 1, 1);
+            attach (mode_toggle, 0, 2, 1, 1);
         }
     }
 }

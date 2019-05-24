@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema path="/com/github/evan-buss/yin-yang/" id="com.github.evan-buss.yin-yang">
-    <key name="useless-setting" type="b">
-      <default>false</default>
-      <summary>Useless Setting</summary>
-      <description>Whether the useless switch is toggled</description>
+    <key name="dark-mode" type="b">
+      <default>true</default>
+      <summary>Sets the preferred application theme settings</summary>
+      <description>true means that every application will use the dark theme. 
+      	false means that every application will use the light theme
+      </description>
     </key>
   </schema>
 </schemalist>

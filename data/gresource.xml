@@ -3,4 +3,8 @@
     <gresource prefix="/com/github/evan-buss/yin-yang/css">
         <file alias="style.css" compressed="true">css/style.css</file>
     </gresource>
+
+    <gresource prefix="/com/github/evan-buss/yin-yang/img">
+      <file alias="logo.svg" compressed="true" preprocess="xml-stripblanks">img/com.github.evan-buss.yin-yang.logo.svg</file>
+    </gresource>
 </gresources>
