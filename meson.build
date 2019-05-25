@@ -20,6 +20,7 @@ executable(
     meson.project_name(),
     'src/Application.vala',
     'src/YinYangWindow.vala',
+    'src/Services/Settings.vala',
     'src/Views/SettingsView.vala',
     'src/Views/MainView.vala',
     'src/Plugins/Plugin.vala',

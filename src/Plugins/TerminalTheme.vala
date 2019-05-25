@@ -23,7 +23,6 @@
 namespace YinYang.Plugins {
     public class TerminalTheme : Plugin {
         public TerminalTheme() {
-
         }
 
         construct {

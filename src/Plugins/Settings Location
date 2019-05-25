@@ -1,5 +1,0 @@
-Firefox Theme Settings
-    // Need to create the user.js file
-    User Profile -> user.js
-                user_pref("lightweightThemes.selectedThemeID", "default-theme@mozilla.org");
-                                user_pref("lightweightThemes.selectedThemeID", "firefox-compact-dark@mozilla.org");

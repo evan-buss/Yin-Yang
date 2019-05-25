@@ -3,19 +3,20 @@ namespace YinYang.Views {
     public class MainView : Gtk.Grid {
 
         public Gtk.ApplicationWindow window { get; construct; }
-        public Settings settings { get; construct; }
+        //  public Settings settings { get; construct; }
+        private Services.Settings settings;
 
-        public MainView (Gtk.ApplicationWindow window, Settings settings) {
+        public MainView (Gtk.ApplicationWindow window) {
             Object (
                 halign: Gtk.Align.CENTER,
                 //  valign: Gtk.Align.CENTER,
                 margin: 8,
-                window: window,
-                settings: settings
+                window: window
             );
         }
 
         construct {
+            settings = Services.Settings.get_default();
 
             /************************
               Application Logo
@@ -39,14 +40,14 @@ namespace YinYang.Views {
             var mode_toggle = new Granite.Widgets.ModeButton ();
             mode_toggle.append_text ("Light");
             mode_toggle.append_text ("Dark");
-            mode_toggle.set_active ( settings.get_boolean ("dark-mode") ? 1 : 0);
+            mode_toggle.set_active ( settings.dark_mode ? 1 : 0);
 
             mode_toggle.mode_changed.connect (() => {
                 if (mode_toggle.selected == 1) {
-                    settings.set_boolean ("dark-mode", true);
+                    settings.dark_mode = true;
                     Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
                 } else {
-                    settings.set_boolean ("dark-mode", false);
+                    settings.dark_mode = false;
                     Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
                 }
             });

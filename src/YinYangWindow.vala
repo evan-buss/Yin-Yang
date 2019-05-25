@@ -26,7 +26,7 @@ namespace YinYang {
 
         public Views.MainView main_view;
         public Views.SettingsView settings_view;
-        public Settings settings;
+        public Services.Settings settings;
 
         public YinYangWindow () {
             Object (
@@ -41,12 +41,12 @@ namespace YinYang {
             /************************
               Load Existing Preferences
             ************************/
-            settings = new Settings ("com.github.evan-buss.yin-yang");
-            if (settings.get_boolean ("dark-mode")) {
-                Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
-            } else {
-                Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
-            }
+            settings = Services.Settings.get_default();
+            //  if (settings.dark_mode) {
+            //      Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
+            //  } else {
+            //      Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
+            //  }
 
             /************************
               Load External CSS
@@ -80,18 +80,22 @@ namespace YinYang {
               Create Views
             ************************/
             var stack = new Gtk.Stack ();
-            main_view = new Views.MainView (this, settings);
+            main_view = new Views.MainView (this);
             settings_view = new Views.SettingsView ();
             stack.add_named (main_view, "main");
             stack.add_named (settings_view, "settings");
 
+            var settings_style_context = settings_button.get_style_context ();
+
             settings_button.clicked.connect (() => {
                 //  Settings --> Main
                 if (stack.visible_child == main_view) {
+                     settings_style_context.add_class ("settings-button-active");
                     stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT);
                     stack.set_visible_child (settings_view);
                 } else {
                     // Main --> Settings
+                    settings_style_context.remove_class ("settings-button-active");
                     stack.set_transition_type (Gtk.StackTransitionType.SLIDE_RIGHT);
                     stack.set_visible_child (main_view);
                 }

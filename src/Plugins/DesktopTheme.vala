@@ -24,7 +24,6 @@ namespace YinYang.Plugins {
 
     public class DesktopTheme : Plugin {
         public DesktopTheme() {
-
         }
 
         construct {
@@ -32,6 +31,8 @@ namespace YinYang.Plugins {
             label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
             var checkbox = new Gtk.CheckButton.with_label ("Prefer Dark Theme");
+            message ("Creating desktop settings");
+            settings.schema.bind ("enable-dark-desktop", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             attach (label, 0, 0, 1, 1);
             attach (checkbox, 0, 1, 1, 1);

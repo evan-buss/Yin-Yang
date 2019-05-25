@@ -1,17 +1,4 @@
-.make-white {
-    background-color:  #DEDEDE;
-    color: black;
-}
-
-
-/* .light-header > .left > .close {
-    background-color: black;
-} */
-
-.light-header > .vertical > .title {
-    color: black;
-}
-
-.light-body > .horizontal {
-    color: black;
+.settings-button-active > widget > box > image {
+    border-radius: 50%;
+	box-shadow: 0 0 6px white;
 }

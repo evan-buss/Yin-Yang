@@ -1,12 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/com/github/evan-buss/yin-yang/" id="com.github.evan-buss.yin-yang">
+  <schema path="/com/github/evan-buss/yin-yang/" id="com.github.evan-buss.yin-yang.settings">
     <key name="dark-mode" type="b">
-      <default>true</default>
+      <default>false</default>
       <summary>Sets the preferred application theme settings</summary>
-      <description>true means that every application will use the dark theme. 
+      <description>true means that every application will use the dark theme.
       	false means that every application will use the light theme
       </description>
+    </key>
+
+    <!-- <key name="prefer-dark-desktop" type="b">
+      <default></default>
+      <summary></summary>
+      <description></description>
+    </key> -->
+    <key name="enable-dark-desktop" type="b">
+      <default>false</default>
+      <summary>Prefer dark application themes. Sets the global dark setting</summary>
+      <description>Prefer dark application themes. Sets the global dark </description>
     </key>
   </schema>
 </schemalist>

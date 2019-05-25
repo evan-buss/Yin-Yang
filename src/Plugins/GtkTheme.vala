@@ -24,7 +24,6 @@ namespace YinYang.Plugins {
 
     public class GtkTheme : Plugin {
         public GtkTheme() {
-
         }
 
         construct {

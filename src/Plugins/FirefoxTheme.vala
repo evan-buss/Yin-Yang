@@ -20,14 +20,30 @@
 * Authored by: Evan Buss <evan.buss28@gmail.com>
 */
 
+/*
+    Sets the active firefox theme
+    Only supports the default light and dark theme for now.
+
+    Implementation Details:
+        1. Attempt to find "user.js" in the firefox profile folder
+        2. Create or update this file with the theme string
+            - Dark Theme:
+                user_pref("lightweightThemes.selectedThemeID", "firefox-compact-dark@mozilla.org");
+            - Light Theme:
+                user_pref("lightweightThemes.selectedThemeID", "default-theme@mozilla.org");
+*/
 namespace YinYang.Plugins {
     class FirefoxTheme : Plugin {
-        public FirefoxTheme() {
 
+        const string DARK_STRING = "user_pref(\"lightweightThemes.selectedThemeID\", \"firefox-compact-dark@mozilla.org\");";
+        const string LIGHT_STRING = "user_pref(\"lightweightThemes.selectedThemeID\", \"default-theme@mozilla.org\");";
+
+        public FirefoxTheme() {
+            message ("firefox constructor ran");
         }
 
         construct {
-             var label = new Gtk.Label ("Firefox");
+            var label = new Gtk.Label ("Firefox (Only supports default)");
             label.get_style_context (). add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 
@@ -36,9 +52,13 @@ namespace YinYang.Plugins {
             var checkbox = new Gtk.CheckButton ();
 
             var light_firefox_entry = new Gtk.Entry ();
+            light_firefox_entry.sensitive = false;
+            light_firefox_entry.text = "Default Light";
             light_firefox_entry.placeholder_text = "Light Theme";
 
             var dark_firefox_entry = new Gtk.Entry ();
+            dark_firefox_entry.sensitive = false;
+            dark_firefox_entry.text = "Default Dark";
             dark_firefox_entry.placeholder_text = "Dark Theme";
 
             box.add (checkbox);
@@ -48,5 +68,13 @@ namespace YinYang.Plugins {
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);
         }
+
+        //  override public bool set_dark () {
+
+        //  }
+
+        //  override public bool set_light () {
+
+        //  }
     }
 }

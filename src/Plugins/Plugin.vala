@@ -23,8 +23,24 @@
 //  Base Plugin Class that defines the standard methods and fields of all plugins
 namespace YinYang.Plugins {
     public class Plugin : Gtk.Grid {
-        public Plugin() {
 
+        public Services.Settings settings;
+
+        public Plugin() {
         }
+
+        construct {
+            settings = Services.Settings.get_default();
+        }
+    }
+
+    public bool set_dark () {
+        message ("setting dark");
+        return true;
+    }
+
+    public bool set_light () {
+        message ("setting light");
+        return true;
     }
 }

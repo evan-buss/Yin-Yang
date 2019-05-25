@@ -24,7 +24,6 @@ namespace YinYang.Plugins {
 
     public class VSCodeTheme : Plugin {
         public VSCodeTheme() {
-
         }
 
         construct {
