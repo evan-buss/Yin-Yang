@@ -22,6 +22,13 @@ executable(
     'src/YinYangWindow.vala',
     'src/Views/SettingsView.vala',
     'src/Views/MainView.vala',
+    'src/Plugins/Plugin.vala',
+    'src/Plugins/DesktopTheme.vala',
+    'src/Plugins/GtkTheme.vala',
+    'src/Plugins/VSCodeTheme.vala',
+    'src/Plugins/TerminalTheme.vala',
+    'src/Plugins/CodeTheme.vala',
+    'src/Plugins/FirefoxTheme.vala',
     gresource,
     dependencies: [
         dependency('gtk+-3.0'),
