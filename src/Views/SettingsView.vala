@@ -32,32 +32,13 @@ namespace YinYang.Views {
             pluginList.add(new Plugins.TerminalTheme ());
             pluginList.add(new Plugins.CodeTheme ());
             pluginList.add(new Plugins.FirefoxTheme ());
-            //  var desktop_theme = new Plugins.DesktopTheme ();
-            //  var gtk_theme = new Plugins.GtkTheme ();
-            //  var vscode_theme = new Plugins.VSCodeTheme ();
-            //  var terminal_theme = new Plugins.TerminalTheme ();
-            //  var code_theme = new Plugins.CodeTheme ();
-            //  var firefox_theme = new Plugins.FirefoxTheme ();
-
 
             /************************
               Attach To Grid
             ************************/
-            //  foreach (Gtk.Grid plugin in pluginList) {
-            //      attach (header_label, 0, 0, 2, 1);
-            //  }
-
             for (int i = 0; i < pluginList.size; i++) {
                 attach (pluginList.get(i), 0, i, 2, 1);
             }
-
-            //  attach (header_label, 0, 0, 2, 1);
-            //  attach (desktop_theme, 0, 1, 1, 1);
-            //  attach (gtk_theme, 0, 2, 1, 1);
-            //  attach (vscode_theme, 0, 3, 1, 1);
-            //  attach (terminal_theme, 0, 4, 1, 1);
-            //  attach (code_theme, 0, 5, 1, 1);
-            //  attach (firefox_theme, 0, 6, 1, 1);
         }
     }
 }

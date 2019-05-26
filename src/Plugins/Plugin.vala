@@ -32,15 +32,13 @@ namespace YinYang.Plugins {
         construct {
             settings = Services.Settings.get_default();
         }
-    }
 
-    public bool set_dark () {
-        message ("setting dark");
-        return true;
-    }
+        public virtual void set_dark () {
+            message ("setting dark");
+        }
 
-    public bool set_light () {
-        message ("setting light");
-        return true;
+        public virtual void set_light () {
+            message ("setting light");
+        }
     }
 }

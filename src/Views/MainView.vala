@@ -5,6 +5,7 @@ namespace YinYang.Views {
         public Gtk.ApplicationWindow window { get; construct; }
         //  public Settings settings { get; construct; }
         private Services.Settings settings;
+        public signal void mode_changed (bool isDark);
 
         public MainView (Gtk.ApplicationWindow window) {
             Object (
@@ -31,6 +32,7 @@ namespace YinYang.Views {
             } catch (Error e) {
                 debug ("unable to load logo image");
             }
+
             /************************
               Mode Toggle Area
             ************************/
@@ -46,12 +48,13 @@ namespace YinYang.Views {
                 if (mode_toggle.selected == 1) {
                     settings.dark_mode = true;
                     Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
+                    mode_changed (true);
                 } else {
                     settings.dark_mode = false;
                     Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
+                    mode_changed (false);
                 }
             });
-
 
             attach (app_icon, 0, 0, 1, 1);
             attach (header_label, 0, 1, 1, 1);

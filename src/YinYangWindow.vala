@@ -35,6 +35,19 @@ namespace YinYang {
                 default_height: 400,
                 window_position: Gtk.WindowPosition.CENTER
             );
+
+            main_view.mode_changed.connect ((isDark) => {
+                if (isDark) {
+                    foreach (var plugin in settings_view.pluginList) {
+                        plugin.set_dark();
+                    }
+                } else {
+                    foreach (var plugin in settings_view.pluginList) {
+                        plugin.set_light();
+                    }
+                }
+            });
+
         }
 
         construct {
@@ -90,7 +103,7 @@ namespace YinYang {
             settings_button.clicked.connect (() => {
                 //  Settings --> Main
                 if (stack.visible_child == main_view) {
-                     settings_style_context.add_class ("settings-button-active");
+                    settings_style_context.add_class ("settings-button-active");
                     stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT);
                     stack.set_visible_child (settings_view);
                 } else {

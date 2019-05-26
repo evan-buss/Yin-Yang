@@ -49,5 +49,4 @@ namespace YinYang.Plugins {
             attach (box, 0, 1, 1, 1);
         }
     }
-
 }
