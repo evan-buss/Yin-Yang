@@ -14,6 +14,11 @@
       <summary></summary>
       <description></description>
     </key> -->
+    <key name="enable-gtk-theme" type="b">
+      <default>false</default>
+      <summary>Whether or not to switch the GTK theme between dark and light</summary>
+      <description>If enabled, the GTK theme will be switched when toggled between light and dark mode</description>
+    </key>
     <key name="enable-dark-desktop" type="b">
       <default>false</default>
       <summary>Prefer dark application themes. Sets the global dark setting</summary>

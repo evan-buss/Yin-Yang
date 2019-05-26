@@ -23,7 +23,14 @@
 namespace YinYang.Plugins {
 
     public class GtkTheme : Plugin {
+
+        private Gtk.CheckButton checkbox;
+        private Gtk.Entry light_gtk_entry;
+        private Gtk.Entry dark_gtk_entry;
+        private Settings gtk_settings;
+
         public GtkTheme() {
+            gtk_settings = new Settings ("org.gnome.desktop.interface");
         }
 
         construct {
@@ -33,20 +40,37 @@ namespace YinYang.Plugins {
 
             var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
 
-            var checkbox = new Gtk.CheckButton ();
+            checkbox = new Gtk.CheckButton ();
+            settings.schema.bind ("enable-gtk-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
-            var light_gtk_entry = new Gtk.Entry ();
+            light_gtk_entry = new Gtk.Entry ();
             light_gtk_entry.placeholder_text = "Light Theme";
 
-            var dark_theme_entry = new Gtk.Entry ();
-            dark_theme_entry.placeholder_text = "Dark Theme";
+            dark_gtk_entry = new Gtk.Entry ();
+            dark_gtk_entry.placeholder_text = "Dark Theme";
 
             box.add (checkbox);
             box.add (light_gtk_entry);
-            box.add (dark_theme_entry);
+            box.add (dark_gtk_entry);
 
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);
+        }
+
+        public override void set_light () {
+            if (checkbox.active && light_gtk_entry.text != "") {
+                gtk_settings.set_string ("gtk-theme", light_gtk_entry.text);
+            } else {
+                message ("could not set light gtk\n");
+            }
+        }
+
+        public override void set_dark () {
+            if (checkbox.active && dark_gtk_entry.text != "") {
+                gtk_settings.set_string ("gtk-theme", dark_gtk_entry.text);
+            } else {
+                message ("could not set dark gtk\n");
+            }
         }
     }
 }

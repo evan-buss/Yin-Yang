@@ -20,19 +20,22 @@
 * Authored by: Evan Buss <evan.buss28@gmail.com>
 */
 
+//  TODO: Make the selections drop downs that show the currently installed themes
+//        Eliminates errors of wrong names, etc.
+
 namespace YinYang.Plugins {
 
     public class DesktopTheme : Plugin {
         private GLib.KeyFile keyfile;
-        private string path;
+        private string setting_path;
         private Gtk.CheckButton checkbox;
 
         public DesktopTheme() {
             keyfile = new GLib.KeyFile ();
 
             try {
-                path = GLib.Environment.get_user_config_dir() + "/gtk-3.0/settings.ini";
-                keyfile.load_from_file (path, 0);
+                setting_path = GLib.Environment.get_user_config_dir() + "/gtk-3.0/settings.ini";
+                keyfile.load_from_file (setting_path, 0);
             }
             catch (Error e) {
                 warning ("Error loading GTK+ Keyfile settings.ini: " + e.message);
@@ -102,7 +105,7 @@ namespace YinYang.Plugins {
         private void save_keyfile () {
             try {
                 string data = keyfile.to_data();
-                GLib.FileUtils.set_contents(path, data);
+                GLib.FileUtils.set_contents(setting_path, data);
             }
             catch (GLib.FileError e) {
                 warning ("Error saving GTK+ Keyfile settings.ini: " + e.message);
