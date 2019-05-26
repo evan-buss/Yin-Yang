@@ -44,7 +44,6 @@ namespace YinYang {
                     set_all_light ();
                 }
             });
-
         }
 
         construct {
@@ -52,11 +51,6 @@ namespace YinYang {
               Load Existing Preferences
             ************************/
             settings = Services.Settings.get_default ();
-            //  if (settings.dark_mode) {
-            //      Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
-            //  } else {
-            //      Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
-            //  }
 
             /************************
               Load External CSS
@@ -115,14 +109,20 @@ namespace YinYang {
             add (stack);
         }
 
+        /*
+            Loop through all plugins and set them as dark if they are enabled
+        */
         private void set_all_dark () {
-            foreach (var plugin in settings_view.pluginList) {
+            foreach (var plugin in settings_view.plugin_list) {
                 plugin.set_dark ();
             }
         }
 
+        /*
+            Loop through all plugins and set them as light if they are enabled
+        */
         private void set_all_light () {
-            foreach (var plugin in settings_view.pluginList) {
+            foreach (var plugin in settings_view.plugin_list) {
                 plugin.set_light ();
             }
         }

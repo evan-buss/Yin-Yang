@@ -40,6 +40,8 @@ namespace YinYang.Plugins {
         const string LIGHT_STRING =
             "user_pref(\"lightweightThemes.selectedThemeID\", \"default-theme@mozilla.org\");";
 
+        private string firefox_dir = Environment.get_home_dir() + "/.mozilla/firefox/";
+
         public FirefoxTheme () {
         }
 
@@ -51,6 +53,7 @@ namespace YinYang.Plugins {
             var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
 
             var checkbox = new Gtk.CheckButton ();
+            settings.schema.bind ("enable-firefox-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             var light_firefox_entry = new Gtk.Entry ();
             light_firefox_entry.sensitive = false;
@@ -70,12 +73,42 @@ namespace YinYang.Plugins {
             attach (box, 0, 1, 1, 1);
         }
 
-        //  override public bool set_dark () {
+        public override void set_dark () {
+            set_firefox_theme (DARK_STRING);
+        }
 
-        //  }
+        public override void set_light () {
+            set_firefox_theme (LIGHT_STRING);
+        }
 
-        //  override public bool set_light () {
+        private void set_firefox_theme (string theme_string) {
+            try {
+                Dir dir = Dir.open (firefox_dir, 0);
+                string name;
+                while ((name = dir.read_name ()) != null) {
+                    string path = Path.build_filename (firefox_dir, name);
+                    if (FileUtils.test (path, FileTest.IS_DIR)) {
+                        if (path.split(".", 0)[2] == "default") {
+                            // Reference user.js file
+                            var file = File.new_for_path (path + "/user.js");
 
-        //  }
+                            // delete if file already exists
+                            if (file.query_exists ()) {
+                                file.delete ();
+                            }
+
+                            // Create a new file with this name
+                            var file_stream = file.create (FileCreateFlags.NONE);
+
+                            // Write text data to file
+                            var data_stream = new DataOutputStream (file_stream);
+                            data_stream.put_string (theme_string);
+                        }
+                    }
+                }
+            } catch (Error e) {
+                message (e.message);
+            }
+        }
     }
 }

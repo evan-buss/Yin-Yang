@@ -20,10 +20,16 @@
 * Authored by: Evan Buss <evan.buss28@gmail.com>
 */
 
-//  Base Plugin Class that defines the standard methods and fields of all plugins
+/*
+     Base class that defines the standard methods and fields of all plugins
+*/
 namespace YinYang.Plugins {
+
+    //  Each plugin is a grid of widgets that control the individual settings
     public class Plugin : Gtk.Grid {
 
+        //  Each plugin has access to the global settings service to load existing
+        //   user preferences.
         public Services.Settings settings;
 
         public Plugin () {
@@ -33,10 +39,16 @@ namespace YinYang.Plugins {
             settings = Services.Settings.get_default ();
         }
 
+        //  Each plugin must override this method to toggle the plugin dark mode
+        //  These methods are responsible for determining if the user has enabled
+        //  your plugin or not
         public virtual void set_dark () {
             message ("default set_dark method");
         }
 
+        //  Each plugin must override this method to toggle the plugin light mode
+        //  These methods are responsible for determining if the user has enabled
+        //  your plugin or not
         public virtual void set_light () {
             message ("default set_light method");
         }

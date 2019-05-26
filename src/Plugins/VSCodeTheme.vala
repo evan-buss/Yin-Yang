@@ -27,7 +27,7 @@ namespace YinYang.Plugins {
         private Gtk.CheckButton checkbox;
         private Gtk.Entry light_vscode_entry;
         private Gtk.Entry dark_vscode_entry;
-        private string config_dir = GLib.Environment.get_user_config_dir ();
+        private string config_dir = Environment.get_user_config_dir ();
         private string[] settings_paths;
 
         public VSCodeTheme () {
@@ -51,9 +51,12 @@ namespace YinYang.Plugins {
 
             light_vscode_entry = new Gtk.Entry ();
             light_vscode_entry.placeholder_text = "Light Theme";
+            settings.schema.bind ("vscode-theme-light", light_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 
             dark_vscode_entry = new Gtk.Entry ();
             dark_vscode_entry.placeholder_text = "Dark Theme";
+            settings.schema.bind ("vscode-theme-dark", dark_vscode_entry, "text", SettingsBindFlags.DEFAULT);
+
 
             box.add (checkbox);
             box.add (light_vscode_entry);
@@ -98,7 +101,6 @@ namespace YinYang.Plugins {
                     }
                 }
             }
-
         }
     }
 }

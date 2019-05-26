@@ -20,9 +20,6 @@
 * Authored by: Evan Buss <evan.buss28@gmail.com>
 */
 
-//  TODO: Make the selections drop downs that show the currently installed themes
-//        Eliminates errors of wrong names, etc.
-
 namespace YinYang.Plugins {
 
     public class DesktopTheme : Plugin {
@@ -104,9 +101,9 @@ namespace YinYang.Plugins {
         private void save_keyfile () {
             try {
                 string data = keyfile.to_data ();
-                GLib.FileUtils.set_contents (setting_path, data);
+                FileUtils.set_contents (setting_path, data);
             }
-            catch (GLib.FileError e) {
+            catch (FileError e) {
                 warning ("Error saving GTK+ Keyfile settings.ini: " + e.message);
             }
         }

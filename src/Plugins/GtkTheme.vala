@@ -20,6 +20,9 @@
 * Authored by: Evan Buss <evan.buss28@gmail.com>
 */
 
+//  TODO: Make the selections drop downs that show the currently installed themes
+//        Eliminates errors of wrong names, etc.
+
 namespace YinYang.Plugins {
 
     public class GtkTheme : Plugin {
@@ -45,9 +48,11 @@ namespace YinYang.Plugins {
 
             light_gtk_entry = new Gtk.Entry ();
             light_gtk_entry.placeholder_text = "Light Theme";
+            settings.schema.bind ("gtk-theme-light", light_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
             dark_gtk_entry = new Gtk.Entry ();
             dark_gtk_entry.placeholder_text = "Dark Theme";
+            settings.schema.bind ("gtk-theme-dark", dark_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
             box.add (checkbox);
             box.add (light_gtk_entry);

@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema path="/com/github/evan-buss/yin-yang/" id="com.github.evan-buss.yin-yang.settings">
+
+   <!-- <key name="prefer-dark-desktop" type="b">
+      <default></default>
+      <summary></summary>
+      <description></description>
+    </key> -->
+
     <key name="dark-mode" type="b">
       <default>false</default>
       <summary>Sets the preferred application theme settings</summary>
@@ -9,25 +16,49 @@
       </description>
     </key>
 
-    <!-- <key name="prefer-dark-desktop" type="b">
-      <default></default>
-      <summary></summary>
-      <description></description>
-    </key> -->
-    <key name="enable-gtk-theme" type="b">
-      <default>false</default>
-      <summary>Whether or not to switch the GTK theme between dark and light</summary>
-      <description>If enabled, the GTK theme will be switched when toggled between light and dark mode</description>
-    </key>
     <key name="enable-dark-desktop" type="b">
       <default>false</default>
       <summary>Prefer dark application themes. Sets the global dark setting</summary>
       <description>Prefer dark application themes. Sets the global dark </description>
     </key>
+
+    <key name="enable-gtk-theme" type="b">
+      <default>false</default>
+      <summary>Whether or not to switch the GTK theme between dark and light</summary>
+      <description>If enabled, the GTK theme will be switched when toggled between light and dark mode</description>
+    </key>
+    <key name="gtk-theme-light" type="s">
+      <default>''</default>
+      <summary>User's preferred GTK light theme</summary>
+      <description>User's preferred GTK light theme</description>
+    </key>
+    <key name="gtk-theme-dark" type="s">
+      <default>''</default>
+      <summary>User's preferred GTK dark theme</summary>
+      <description>User's preferred GTK dark theme</description>
+    </key>
+
+
     <key name="enable-vscode-theme" type="b">
       <default>false</default>
       <summary>Whether or not to switch the vscode theme between dark and light</summary>
       <description>If enabled, the VSCode editor theme will be switched when toggled between light and dark mode</description>
+    </key>
+    <key name="vscode-theme-light" type="s">
+      <default>''</default>
+      <summary>User's preferred Visual Studio Code light theme</summary>
+      <description>User's preferred Visual Studio Code light theme</description>
+    </key>
+    <key name="vscode-theme-dark" type="s">
+      <default>''</default>
+      <summary>User's preferred Visual Studio Code dark theme</summary>
+      <description>User's preferred Visual Studio Code dark theme</description>
+    </key>
+
+    <key name="enable-firefox-theme" type="b">
+      <default>false</default>
+      <summary>Whether or not to switch the Firefox theme between dark and light</summary>
+      <description>If enabled, the Firefox theme will be switched when toggled between light and dark mode</description>
     </key>
   </schema>
 </schemalist>

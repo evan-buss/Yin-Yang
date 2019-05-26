@@ -8,6 +8,12 @@ namespace YinYang.Services {
         public bool dark_mode { get; set; }
         public bool enable_dark_desktop { get; set; }
 
+        public bool enable_gtk_theme { get; set; }
+        public string gtk_theme_light { get; set; }
+        public string gtk_theme_dark { get; set; }
+
+        public bool enable_vscode_theme { get; set; }
+
         //  public int window_width { get; set; }
         //  public int window_height { get; set; }
         //  public bool is_maximized { get; set; }
