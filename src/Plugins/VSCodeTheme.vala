@@ -27,10 +27,10 @@ namespace YinYang.Plugins {
         private Gtk.CheckButton checkbox;
         private Gtk.Entry light_vscode_entry;
         private Gtk.Entry dark_vscode_entry;
-        private string config_dir = GLib.Environment.get_user_config_dir();
+        private string config_dir = GLib.Environment.get_user_config_dir ();
         private string[] settings_paths;
 
-        public VSCodeTheme() {
+        public VSCodeTheme () {
             settings_paths = {
                 config_dir + "/Code/User/settings.json",
                 config_dir + "/VSCodium/User/settings.json",
@@ -78,8 +78,7 @@ namespace YinYang.Plugins {
         /*
             Write the given theme string to the VSCode settings file if it exists
          */
-        private void write_json (string themeString) {
-
+        private void write_json (string theme_string) {
             foreach (var path in settings_paths) {
                 if (FileUtils.test (path, FileTest.EXISTS)) {
                     try {
@@ -87,7 +86,7 @@ namespace YinYang.Plugins {
                         parser.load_from_file (path);
 
                         var root_object = parser.get_root ().get_object ();
-                        root_object.set_string_member ("workbench.colorTheme", themeString);
+                        root_object.set_string_member ("workbench.colorTheme", theme_string);
 
                         var generator = new Json.Generator ();
                         generator.set_root (parser.get_root ());

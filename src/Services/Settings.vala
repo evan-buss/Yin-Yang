@@ -25,7 +25,7 @@ namespace YinYang.Services {
             }
         }
 
-        private Settings ()  {
+        private Settings () {
             base ("com.github.evan-buss.yin-yang.settings");
         }
     }

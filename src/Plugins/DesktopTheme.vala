@@ -30,11 +30,11 @@ namespace YinYang.Plugins {
         private string setting_path;
         private Gtk.CheckButton checkbox;
 
-        public DesktopTheme() {
+        public DesktopTheme () {
             keyfile = new GLib.KeyFile ();
 
             try {
-                setting_path = GLib.Environment.get_user_config_dir() + "/gtk-3.0/settings.ini";
+                setting_path = GLib.Environment.get_user_config_dir () + "/gtk-3.0/settings.ini";
                 keyfile.load_from_file (setting_path, 0);
             }
             catch (Error e) {
@@ -103,8 +103,8 @@ namespace YinYang.Plugins {
          */
         private void save_keyfile () {
             try {
-                string data = keyfile.to_data();
-                GLib.FileUtils.set_contents(setting_path, data);
+                string data = keyfile.to_data ();
+                GLib.FileUtils.set_contents (setting_path, data);
             }
             catch (GLib.FileError e) {
                 warning ("Error saving GTK+ Keyfile settings.ini: " + e.message);

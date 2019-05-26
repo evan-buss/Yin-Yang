@@ -35,10 +35,12 @@
 namespace YinYang.Plugins {
     class FirefoxTheme : Plugin {
 
-        const string DARK_STRING = "user_pref(\"lightweightThemes.selectedThemeID\", \"firefox-compact-dark@mozilla.org\");";
-        const string LIGHT_STRING = "user_pref(\"lightweightThemes.selectedThemeID\", \"default-theme@mozilla.org\");";
+        const string DARK_STRING =
+            "user_pref(\"lightweightThemes.selectedThemeID\", \"firefox-compact-dark@mozilla.org\");";
+        const string LIGHT_STRING =
+            "user_pref(\"lightweightThemes.selectedThemeID\", \"default-theme@mozilla.org\");";
 
-        public FirefoxTheme() {
+        public FirefoxTheme () {
         }
 
         construct {

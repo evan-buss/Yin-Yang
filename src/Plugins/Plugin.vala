@@ -26,11 +26,11 @@ namespace YinYang.Plugins {
 
         public Services.Settings settings;
 
-        public Plugin() {
+        public Plugin () {
         }
 
         construct {
-            settings = Services.Settings.get_default();
+            settings = Services.Settings.get_default ();
         }
 
         public virtual void set_dark () {

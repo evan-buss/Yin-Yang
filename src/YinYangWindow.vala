@@ -37,8 +37,8 @@ namespace YinYang {
                 window_position: Gtk.WindowPosition.CENTER
             );
 
-            main_view.mode_changed.connect ((isDark) => {
-                if (isDark) {
+            main_view.mode_changed.connect ((is_dark) => {
+                if (is_dark) {
                     set_all_dark ();
                 } else {
                     set_all_light ();
@@ -51,7 +51,7 @@ namespace YinYang {
             /************************
               Load Existing Preferences
             ************************/
-            settings = Services.Settings.get_default();
+            settings = Services.Settings.get_default ();
             //  if (settings.dark_mode) {
             //      Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
             //  } else {
@@ -117,13 +117,13 @@ namespace YinYang {
 
         private void set_all_dark () {
             foreach (var plugin in settings_view.pluginList) {
-                plugin.set_dark();
+                plugin.set_dark ();
             }
         }
 
         private void set_all_light () {
             foreach (var plugin in settings_view.pluginList) {
-                plugin.set_light();
+                plugin.set_light ();
             }
         }
     }

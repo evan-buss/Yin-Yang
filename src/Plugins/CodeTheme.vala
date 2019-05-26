@@ -22,7 +22,7 @@
 
 namespace YinYang.Plugins {
     class CodeTheme : Plugin {
-        public CodeTheme() {
+        public CodeTheme () {
 
         }
 

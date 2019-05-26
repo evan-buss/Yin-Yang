@@ -22,7 +22,7 @@
 
 namespace YinYang.Plugins {
     public class TerminalTheme : Plugin {
-        public TerminalTheme() {
+        public TerminalTheme () {
         }
 
         construct {

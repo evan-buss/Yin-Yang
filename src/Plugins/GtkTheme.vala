@@ -29,7 +29,7 @@ namespace YinYang.Plugins {
         private Gtk.Entry dark_gtk_entry;
         private Settings gtk_settings;
 
-        public GtkTheme() {
+        public GtkTheme () {
             gtk_settings = new Settings ("org.gnome.desktop.interface");
         }
 

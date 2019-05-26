@@ -3,7 +3,7 @@ namespace YinYang.Views {
     public class SettingsView : Gtk.Grid {
 
         public Services.Settings settings;
-        public Gee.ArrayList<Plugins.Plugin> pluginList;
+        public Gee.ArrayList<Plugins.Plugin> plugin_list;
 
         public SettingsView () {
             Object (
@@ -25,19 +25,19 @@ namespace YinYang.Views {
             /************************
               Initialize Plugins
             ************************/
-            pluginList = new Gee.ArrayList<Plugins.Plugin>();
-            pluginList.add(new Plugins.DesktopTheme ());
-            pluginList.add(new Plugins.GtkTheme ());
-            pluginList.add(new Plugins.VSCodeTheme ());
-            pluginList.add(new Plugins.TerminalTheme ());
-            pluginList.add(new Plugins.CodeTheme ());
-            pluginList.add(new Plugins.FirefoxTheme ());
+            plugin_list = new Gee.ArrayList<Plugins.Plugin> ();
+            plugin_list.add (new Plugins.DesktopTheme ());
+            plugin_list.add (new Plugins.GtkTheme ());
+            plugin_list.add (new Plugins.VSCodeTheme ());
+            plugin_list.add (new Plugins.TerminalTheme ());
+            plugin_list.add (new Plugins.CodeTheme ());
+            plugin_list.add (new Plugins.FirefoxTheme ());
 
             /************************
               Attach To Grid
             ************************/
-            for (int i = 0; i < pluginList.size; i++) {
-                attach (pluginList.get(i), 0, i, 2, 1);
+            for (int i = 0; i < plugin_list.size; i++) {
+                attach (plugin_list.get (i), 0, i, 2, 1);
             }
         }
     }
