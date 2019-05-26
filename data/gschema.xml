@@ -60,5 +60,11 @@
       <summary>Whether or not to switch the Firefox theme between dark and light</summary>
       <description>If enabled, the Firefox theme will be switched when toggled between light and dark mode</description>
     </key>
+
+    <key name="enable-code-theme" type="b">
+      <default>false</default>
+      <summary>Whether or not to switch the Code (elementary text editor) theme between dark and light</summary>
+      <description>If enabled, the Code theme will be switched when toggled between light and dark mode</description>
+    </key>
   </schema>
 </schemalist>

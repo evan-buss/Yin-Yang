@@ -22,8 +22,19 @@
 
 namespace YinYang.Plugins {
     class CodeTheme : Plugin {
-        public CodeTheme () {
 
+        private Gtk.CheckButton checkbox;
+        private Gtk.ComboBoxText light_code_cb;
+        private Gtk.ComboBoxText dark_code_cb;
+        private Settings code_settings;
+        private string[,] theme_choices = {
+            {"classic", "Classic"},
+            {"solarized-light", "Solarized Light"},
+            {"solarized-dark", "Solarized Dark"}
+        };
+
+        public CodeTheme () {
+             code_settings = new Settings ("io.elementary.code.settings");
         }
 
         construct {
@@ -33,20 +44,58 @@ namespace YinYang.Plugins {
 
             var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
 
-            var checkbox = new Gtk.CheckButton ();
+            checkbox = new Gtk.CheckButton ();
+            settings.schema.bind ("enable-code-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
-            var light_code_entry = new Gtk.Entry ();
-            light_code_entry.placeholder_text = "Light Theme";
 
-            var dark_code_entry = new Gtk.Entry ();
-            dark_code_entry.placeholder_text = "Dark Theme";
+            light_code_cb = new Gtk.ComboBoxText ();
+            dark_code_cb = new Gtk.ComboBoxText ();
+            set_dropdown_sensitive (false);
+
+
+            checkbox.toggled.connect (() => {
+                if (checkbox.active) {
+                    set_dropdown_sensitive (true);
+                } else {
+                    set_dropdown_sensitive (false);
+                }
+            });
+
+            for (int i = 0; i < theme_choices.length[0]; i++) {
+                dark_code_cb.append (theme_choices[i,0], theme_choices[i,1]);
+                light_code_cb.append (theme_choices[i,0], theme_choices[i,1]);
+            }
 
             box.add (checkbox);
-            box.add (light_code_entry);
-            box.add (dark_code_entry);
+            box.add (light_code_cb);
+            box.add (dark_code_cb);
 
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);
+        }
+
+        private void set_dropdown_sensitive (bool is_sens) {
+            if (is_sens) {
+                light_code_cb.sensitive = true;
+                dark_code_cb.sensitive = true;
+            } else {
+                 light_code_cb.sensitive = false;
+                dark_code_cb.sensitive = false;
+            }
+        }
+
+        public override void set_light () {
+            if (checkbox.active && light_code_cb.active != -1) {
+                code_settings.set_string ("style-scheme", light_code_cb.active_id);
+                code_settings.set_boolean ("prefer-dark-style", false);
+            }
+        }
+
+        public override void set_dark () {
+            if (checkbox.active && dark_code_cb.active != -1) {
+                code_settings.set_string ("style-scheme", dark_code_cb.active_id);
+                code_settings.set_boolean ("prefer-dark-style", true);
+            }
         }
     }
 }
