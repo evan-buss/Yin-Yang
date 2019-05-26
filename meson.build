@@ -34,7 +34,8 @@ executable(
     dependencies: [
         dependency('gtk+-3.0'),
         dependency('unity'),
-        dependency('granite')
+        dependency('granite'),
+        dependency('json-glib-1.0')
     ],
     install: true
 )

@@ -34,11 +34,11 @@ namespace YinYang.Plugins {
         }
 
         public virtual void set_dark () {
-            message ("setting dark");
+            message ("default set_dark method");
         }
 
         public virtual void set_light () {
-            message ("setting light");
+            message ("default set_light method");
         }
     }
 }

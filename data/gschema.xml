@@ -24,5 +24,10 @@
       <summary>Prefer dark application themes. Sets the global dark setting</summary>
       <description>Prefer dark application themes. Sets the global dark </description>
     </key>
+    <key name="enable-vscode-theme" type="b">
+      <default>false</default>
+      <summary>Whether or not to switch the vscode theme between dark and light</summary>
+      <description>If enabled, the VSCode editor theme will be switched when toggled between light and dark mode</description>
+    </key>
   </schema>
 </schemalist>

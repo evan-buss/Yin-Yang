@@ -47,7 +47,6 @@ namespace YinYang.Plugins {
             label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
             checkbox = new Gtk.CheckButton.with_label ("Use Prefer Dark Flag");
-            message ("Creating desktop settings");
             settings.schema.bind ("enable-dark-desktop", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             attach (label, 0, 0, 1, 1);

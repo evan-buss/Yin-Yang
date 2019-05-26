@@ -27,6 +27,7 @@ namespace YinYang {
         public Views.MainView main_view;
         public Views.SettingsView settings_view;
         public Services.Settings settings;
+        public bool mode_setting;
 
         public YinYangWindow () {
             Object (
@@ -38,13 +39,9 @@ namespace YinYang {
 
             main_view.mode_changed.connect ((isDark) => {
                 if (isDark) {
-                    foreach (var plugin in settings_view.pluginList) {
-                        plugin.set_dark();
-                    }
+                    set_all_dark ();
                 } else {
-                    foreach (var plugin in settings_view.pluginList) {
-                        plugin.set_light();
-                    }
+                    set_all_light ();
                 }
             });
 
@@ -108,6 +105,7 @@ namespace YinYang {
                     stack.set_visible_child (settings_view);
                 } else {
                     // Main --> Settings
+                    //  FIXME: Navigating back to settings should update all themes immediately based on new settings
                     settings_style_context.remove_class ("settings-button-active");
                     stack.set_transition_type (Gtk.StackTransitionType.SLIDE_RIGHT);
                     stack.set_visible_child (main_view);
@@ -115,6 +113,18 @@ namespace YinYang {
             });
 
             add (stack);
+        }
+
+        private void set_all_dark () {
+            foreach (var plugin in settings_view.pluginList) {
+                plugin.set_dark();
+            }
+        }
+
+        private void set_all_light () {
+            foreach (var plugin in settings_view.pluginList) {
+                plugin.set_light();
+            }
         }
     }
 }

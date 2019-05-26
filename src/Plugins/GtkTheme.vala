@@ -60,16 +60,12 @@ namespace YinYang.Plugins {
         public override void set_light () {
             if (checkbox.active && light_gtk_entry.text != "") {
                 gtk_settings.set_string ("gtk-theme", light_gtk_entry.text);
-            } else {
-                message ("could not set light gtk\n");
             }
         }
 
         public override void set_dark () {
             if (checkbox.active && dark_gtk_entry.text != "") {
                 gtk_settings.set_string ("gtk-theme", dark_gtk_entry.text);
-            } else {
-                message ("could not set dark gtk\n");
             }
         }
     }

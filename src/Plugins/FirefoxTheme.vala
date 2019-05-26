@@ -39,7 +39,6 @@ namespace YinYang.Plugins {
         const string LIGHT_STRING = "user_pref(\"lightweightThemes.selectedThemeID\", \"default-theme@mozilla.org\");";
 
         public FirefoxTheme() {
-            message ("firefox constructor ran");
         }
 
         construct {
