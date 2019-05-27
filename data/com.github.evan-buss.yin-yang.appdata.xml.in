@@ -2,15 +2,78 @@
 <!-- Copyright 2019 Your Name <you@email.com> -->
 <component type="desktop">
   <id>com.github.evan-buss.yin-yang</id>
-  <metadata_license>CC0</metadata_license>
-  <name>Your App's Name</name>
-  <summary>A Catchy Tagline</summary>
+  <project_license>AGPL-3.0</project_license>
+  <name>Yin and Yang</name>
+  <summary>Automatically switch between light and dark application themes</summary>
+  <developer_name>Evan Buss</developer_name>
+  <provides>
+      <binary>com.github.evan-buss.yin-yang</binary>
+  </provides>
+  <screenshots>
+      <screenshot type="default">
+          <image>https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_1.png</image>
+      </screenshot>
+      <screenshot>
+          <image>https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_2.png</image>
+      </screenshot>
+      <screenshot>
+          <image>https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_3.png</image>
+      </screenshot>
+  </screenshots>
   <description>
-    <p>A quick summary of your app's main selling points and features. Just a couple sentences per paragraph is best.</p>
+    <p>Toggle between light and dark themes for a variety of different applications. </p>
+    <p>Yin and Yang allows you to simply click a button to change the  themes for a growing list of desktop applications.</p>
+    <p>Main features:</p>
+    <ul>
+      <li>Toggle between light and dark mode</li>
+      <li>Current Theme Integrations:</li>
+        <ul>
+          <li>GTK Theme</li>
+          <li>Desktop "Prefer Dark"</li>
+          <li>Visual Studio Code</li>
+          <li>Terminal</li>
+          <li>Code</li>
+          <li>Firefox</li>
+        </ul>
+      <li>Use Ctrl + Q or Escape to exit</li>
+    </ul>
   </description>
+  <content_rating type="oars-1.1">
+    <content_attribute id="violence-cartoon">none</content_attribute>
+    <content_attribute id="violence-fantasy">none</content_attribute>
+    <content_attribute id="violence-realistic">none</content_attribute>
+    <content_attribute id="violence-bloodshed">none</content_attribute>
+    <content_attribute id="violence-sexual">none</content_attribute>
+    <content_attribute id="violence-desecration">none</content_attribute>
+    <content_attribute id="violence-slavery">none</content_attribute>
+    <content_attribute id="violence-worship">none</content_attribute>
+    <content_attribute id="drugs-alcohol">none</content_attribute>
+    <content_attribute id="drugs-narcotics">none</content_attribute>
+    <content_attribute id="drugs-tobacco">none</content_attribute>
+    <content_attribute id="sex-nudity">none</content_attribute>
+    <content_attribute id="sex-themes">none</content_attribute>
+    <content_attribute id="sex-homosexuality">none</content_attribute>
+    <content_attribute id="sex-prostitution">none</content_attribute>
+    <content_attribute id="sex-adultery">none</content_attribute>
+    <content_attribute id="sex-appearance">none</content_attribute>
+    <content_attribute id="language-profanity">none</content_attribute>
+    <content_attribute id="language-humor">none</content_attribute>
+    <content_attribute id="language-discrimination">none</content_attribute>
+    <content_attribute id="social-chat">none</content_attribute>
+    <content_attribute id="social-info">none</content_attribute>
+    <content_attribute id="social-audio">none</content_attribute>
+    <content_attribute id="social-location">none</content_attribute>
+    <content_attribute id="social-contacts">none</content_attribute>
+    <content_attribute id="money-purchasing">none</content_attribute>
+    <content_attribute id="money-gambling">none</content_attribute>
+  </content_rating>
+  <url type="homepage">https://github.com/evan-buss/yin-yang</url>
+  <url type="bugtracker">https://github.com/evan-buss/yin-yang/issues</url>
+  <url type="help">https://github.com/evan-buss/yin-yang/issues</url>
+  <update_contact>evan.buss28@gmail.com</update_contact>
   <custom>
-     <value key="x-appcenter-color-primary">#603461</value>
+     <value key="x-appcenter-color-primary">#231F20</value>
      <value key="x-appcenter-color-primary-text">rgb(255, 255, 255)</value>
-     <value key="x-appcenter-suggested-price">5</value>
+     <value key="x-appcenter-suggested-price">1</value>
   </custom>
 </component>
