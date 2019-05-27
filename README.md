@@ -3,11 +3,12 @@
 > Yin-Yang brings automatic day and night theme-switching to Elementary OS
 
 <p align="center">
+    <img align="center" src="https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_1.png" alt="dark_mode">    
+</p>
+
+<p align="center">
     <table>
       <tr>
-        <td>
-          <img src="https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_1.png" alt="dark mode">
-        </td>
         <td>
           <img src="https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_2.png" alt="light_mode">
         </td>
