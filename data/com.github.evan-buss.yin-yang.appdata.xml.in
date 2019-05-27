@@ -2,6 +2,7 @@
 <!-- Copyright 2019 Your Name <you@email.com> -->
 <component type="desktop">
   <id>com.github.evan-buss.yin-yang</id>
+  <metadata_license>CC0-1.0</metadata_license>
   <project_license>AGPL-3.0</project_license>
   <name>Yin and Yang</name>
   <summary>Automatically switch between light and dark application themes</summary>
@@ -21,21 +22,21 @@
       </screenshot>
   </screenshots>
   <description>
-    <p>Toggle between light and dark themes for a variety of different applications. </p>
-    <p>Yin and Yang allows you to simply click a button to change the  themes for a growing list of desktop applications.</p>
+    <p>Toggle between light and dark themes for a variety of different applications at the click of a button</p>
+    <p>Yin and Yang allows you to uniformly change theme for a growing list of desktop applications on command.</p>
     <p>Main features:</p>
     <ul>
       <li>Toggle between light and dark mode</li>
-      <li>Current Theme Integrations:</li>
-        <ul>
-          <li>GTK Theme</li>
-          <li>Desktop "Prefer Dark"</li>
-          <li>Visual Studio Code</li>
-          <li>Terminal</li>
-          <li>Code</li>
-          <li>Firefox</li>
-        </ul>
       <li>Use Ctrl + Q or Escape to exit</li>
+    </ul>
+    <p>Current Yin-Yang Integrations</p>
+    <ul>
+      <li>GTK Theme</li>
+      <li>Desktop "Prefer Dark"</li>
+      <li>Visual Studio Code</li>
+      <li>Terminal</li>
+      <li>Code</li>
+      <li>Firefox</li>
     </ul>
   </description>
   <content_rating type="oars-1.1">
