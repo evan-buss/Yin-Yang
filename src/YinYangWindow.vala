@@ -28,6 +28,7 @@ namespace YinYang {
         public Views.SettingsView settings_view;
         public Services.Settings settings;
         public bool mode_setting;
+        private Gtk.Stack stack;
 
         public YinYangWindow () {
             Object (
@@ -43,6 +44,17 @@ namespace YinYang {
                 } else {
                     set_all_light ();
                 }
+            });
+
+            //  Open the Settings view on "Ctrl+S"
+            key_press_event.connect ((e) => {
+                if ((e.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+                    if (e.keyval == Gdk.Key.s) {
+                        toggle_view ();
+                        return true;
+                    }
+                }
+               return false;
             });
         }
 
@@ -78,13 +90,14 @@ namespace YinYang {
             var settings_button =
             new Gtk.Button.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             settings_button.valign = Gtk.Align.CENTER;
+            settings_button.set_tooltip_text ("Edit Settings (Ctrl+S)");
 
             headerbar.pack_end (settings_button);
 
             /************************
               Create Views
             ************************/
-            var stack = new Gtk.Stack ();
+            stack = new Gtk.Stack ();
             main_view = new Views.MainView (this);
             settings_view = new Views.SettingsView ();
             stack.add_named (main_view, "main");
@@ -93,18 +106,7 @@ namespace YinYang {
             var settings_style_context = settings_button.get_style_context ();
 
             settings_button.clicked.connect (() => {
-                //  Settings --> Main
-                if (stack.visible_child == main_view) {
-                    //  settings_style_context.add_class ("settings-button-active");
-                    stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT);
-                    stack.set_visible_child (settings_view);
-                } else {
-                    // Main --> Settings
-                    //  FIXME: Navigating back to settings should update all themes immediately based on new settings
-                    //  settings_style_context.remove_class ("settings-button-active");
-                    stack.set_transition_type (Gtk.StackTransitionType.SLIDE_RIGHT);
-                    stack.set_visible_child (main_view);
-                }
+                toggle_view ();
             });
 
             add (stack);
@@ -125,6 +127,19 @@ namespace YinYang {
         private void set_all_light () {
             foreach (var plugin in settings_view.plugin_list) {
                 plugin.set_light ();
+            }
+        }
+
+        private void toggle_view () {
+            //  Settings --> Main
+            if (stack.visible_child == main_view) {
+                stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT);
+                stack.set_visible_child (settings_view);
+            } else {
+                // Main --> Settings
+                //  FIXME: Navigating back to settings should update all themes immediately based on new settings
+                stack.set_transition_type (Gtk.StackTransitionType.SLIDE_RIGHT);
+                stack.set_visible_child (main_view);
             }
         }
     }
