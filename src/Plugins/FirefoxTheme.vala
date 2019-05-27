@@ -58,11 +58,13 @@ namespace YinYang.Plugins {
             settings.schema.bind ("enable-firefox-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             var light_firefox_entry = new Gtk.Entry ();
+            light_firefox_entry.width_chars = 15;
             light_firefox_entry.sensitive = false;
             light_firefox_entry.text = "Default Light";
             light_firefox_entry.placeholder_text = "Light Theme";
 
             var dark_firefox_entry = new Gtk.Entry ();
+            dark_firefox_entry.width_chars = 15;
             dark_firefox_entry.sensitive = false;
             dark_firefox_entry.text = "Default Dark";
             dark_firefox_entry.placeholder_text = "Dark Theme";

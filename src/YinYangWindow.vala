@@ -75,7 +75,8 @@ namespace YinYang {
             /************************
               Settings Toggle Button
             ************************/
-            var settings_button = new Gtk.Button.from_icon_name ("open-menu");
+            var settings_button =
+            new Gtk.Button.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             settings_button.valign = Gtk.Align.CENTER;
 
             headerbar.pack_end (settings_button);
@@ -94,13 +95,13 @@ namespace YinYang {
             settings_button.clicked.connect (() => {
                 //  Settings --> Main
                 if (stack.visible_child == main_view) {
-                    settings_style_context.add_class ("settings-button-active");
+                    //  settings_style_context.add_class ("settings-button-active");
                     stack.set_transition_type (Gtk.StackTransitionType.SLIDE_LEFT);
                     stack.set_visible_child (settings_view);
                 } else {
                     // Main --> Settings
                     //  FIXME: Navigating back to settings should update all themes immediately based on new settings
-                    settings_style_context.remove_class ("settings-button-active");
+                    //  settings_style_context.remove_class ("settings-button-active");
                     stack.set_transition_type (Gtk.StackTransitionType.SLIDE_RIGHT);
                     stack.set_visible_child (main_view);
                 }

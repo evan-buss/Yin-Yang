@@ -47,10 +47,12 @@ namespace YinYang.Plugins {
             settings.schema.bind ("enable-gtk-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             light_gtk_entry = new Gtk.Entry ();
+            light_gtk_entry.width_chars = 15;
             light_gtk_entry.placeholder_text = "Light Theme";
             settings.schema.bind ("gtk-theme-light", light_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
             dark_gtk_entry = new Gtk.Entry ();
+            dark_gtk_entry.width_chars = 15;
             dark_gtk_entry.placeholder_text = "Dark Theme";
             settings.schema.bind ("gtk-theme-dark", dark_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 

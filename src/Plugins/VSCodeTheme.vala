@@ -50,10 +50,12 @@ namespace YinYang.Plugins {
             settings.schema.bind ("enable-vscode-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             light_vscode_entry = new Gtk.Entry ();
+            light_vscode_entry.width_chars = 15;
             light_vscode_entry.placeholder_text = "Light Theme";
             settings.schema.bind ("vscode-theme-light", light_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 
             dark_vscode_entry = new Gtk.Entry ();
+            dark_vscode_entry.width_chars = 15;
             dark_vscode_entry.placeholder_text = "Dark Theme";
             settings.schema.bind ("vscode-theme-dark", dark_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 

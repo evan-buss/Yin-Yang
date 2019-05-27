@@ -52,7 +52,6 @@ namespace YinYang.Plugins {
             dark_code_cb = new Gtk.ComboBoxText ();
             set_dropdown_sensitive (false);
 
-
             checkbox.toggled.connect (() => {
                 if (checkbox.active) {
                     set_dropdown_sensitive (true);
@@ -66,9 +65,12 @@ namespace YinYang.Plugins {
                 light_code_cb.append (theme_choices[i,0], theme_choices[i,1]);
             }
 
-            box.add (checkbox);
-            box.add (light_code_cb);
-            box.add (dark_code_cb);
+            settings.schema.bind ("code-theme-light", light_code_cb, "active", SettingsBindFlags.DEFAULT);
+            settings.schema.bind ("code-theme-dark", dark_code_cb, "active", SettingsBindFlags.DEFAULT);
+
+            box.pack_start (checkbox, false, false, 0);
+            box.pack_start (light_code_cb, true, true, 10);
+            box.pack_start (dark_code_cb, true, true, 10);
 
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);
