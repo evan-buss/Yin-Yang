@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2011-2019 Your Organization (https://evanbuss.com)
+* Copyright (c) 2011-2019 Evan Buss (https://evanbuss.com)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -33,7 +33,7 @@ namespace YinYang {
         public YinYangWindow () {
             Object (
                 resizable: false,
-                default_width: 300,
+                default_width: 200,
                 default_height: 400,
                 window_position: Gtk.WindowPosition.CENTER
             );

@@ -32,12 +32,13 @@ namespace YinYang.Views {
             plugin_list.add (new Plugins.TerminalTheme ());
             plugin_list.add (new Plugins.CodeTheme ());
             plugin_list.add (new Plugins.FirefoxTheme ());
+            plugin_list.add (new Plugins.Wallpaper ());
 
             /************************
               Attach To Grid
             ************************/
             for (int i = 0; i < plugin_list.size; i++) {
-                attach (plugin_list.get (i), 0, i, 2, 1);
+                attach (plugin_list.get (i), 0, i, 1, 1);
             }
         }
     }

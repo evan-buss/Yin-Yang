@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2011-2019 Your Organization (https://evanbuss.com)
+* Copyright (c) 2011-2019 Evan Buss (https://evanbuss.com)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -56,7 +56,6 @@ namespace YinYang.Plugins {
               Light Theme Entry
             ************************/
             light_vscode_entry = new Gtk.Entry ();
-            light_vscode_entry.width_chars = 15;
             light_vscode_entry.placeholder_text = "Light Theme";
             settings.schema.bind ("vscode-theme-light", light_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 
@@ -64,14 +63,20 @@ namespace YinYang.Plugins {
               Dark Theme Entry
             ************************/
             dark_vscode_entry = new Gtk.Entry ();
-            dark_vscode_entry.width_chars = 15;
             dark_vscode_entry.placeholder_text = "Dark Theme";
             settings.schema.bind ("vscode-theme-dark", dark_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 
+            light_vscode_entry.sensitive = checkbox.active;
+            dark_vscode_entry.sensitive = checkbox.active;
 
-            box.add (checkbox);
-            box.add (light_vscode_entry);
-            box.add (dark_vscode_entry);
+            checkbox.toggled.connect (() => {
+                light_vscode_entry.sensitive = checkbox.active;
+                dark_vscode_entry.sensitive = checkbox.active;
+            });
+
+            box.pack_start (checkbox);
+            box.pack_start (light_vscode_entry, true, true, 0);
+            box.pack_start (dark_vscode_entry, true, true, 0);
 
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);

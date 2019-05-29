@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2011-2019 Your Organization (https://evanbuss.com)
+* Copyright (c) 2011-2019 Evan Buss (https://evanbuss.com)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -58,20 +58,24 @@ namespace YinYang.Plugins {
             settings.schema.bind ("enable-firefox-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             var light_firefox_entry = new Gtk.Entry ();
-            light_firefox_entry.width_chars = 15;
-            light_firefox_entry.sensitive = false;
             light_firefox_entry.text = "Default Light";
             light_firefox_entry.placeholder_text = "Light Theme";
 
             var dark_firefox_entry = new Gtk.Entry ();
-            dark_firefox_entry.width_chars = 15;
-            dark_firefox_entry.sensitive = false;
             dark_firefox_entry.text = "Default Dark";
             dark_firefox_entry.placeholder_text = "Dark Theme";
 
-            box.add (checkbox);
-            box.add (light_firefox_entry);
-            box.add (dark_firefox_entry);
+            light_firefox_entry.sensitive = checkbox.active;
+            dark_firefox_entry.sensitive = checkbox.active;
+
+            checkbox.toggled.connect (() => {
+                light_firefox_entry.sensitive = checkbox.active;
+                dark_firefox_entry.sensitive = checkbox.active;
+            });
+
+            box.pack_start (checkbox);
+            box.pack_start (light_firefox_entry, true, true, 0);
+            box.pack_start (dark_firefox_entry, true, true, 0);
 
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);

@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2011-2019 Your Organization (https://evanbuss.com)
+* Copyright (c) 2011-2019 Evan Buss (https://evanbuss.com)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -47,18 +47,11 @@ namespace YinYang.Plugins {
             checkbox = new Gtk.CheckButton ();
             settings.schema.bind ("enable-code-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
-
             light_code_cb = new Gtk.ComboBoxText ();
-            dark_code_cb = new Gtk.ComboBoxText ();
-            set_dropdown_sensitive (false);
+            light_code_cb.hexpand = true;
 
-            checkbox.toggled.connect (() => {
-                if (checkbox.active) {
-                    set_dropdown_sensitive (true);
-                } else {
-                    set_dropdown_sensitive (false);
-                }
-            });
+            dark_code_cb = new Gtk.ComboBoxText ();
+            dark_code_cb.hexpand = true;
 
             for (int i = 0; i < theme_choices.length[0]; i++) {
                 dark_code_cb.append (theme_choices[i,0], theme_choices[i,1]);
@@ -68,22 +61,21 @@ namespace YinYang.Plugins {
             settings.schema.bind ("code-theme-light", light_code_cb, "active", SettingsBindFlags.DEFAULT);
             settings.schema.bind ("code-theme-dark", dark_code_cb, "active", SettingsBindFlags.DEFAULT);
 
+            light_code_cb.sensitive = checkbox.active;
+            dark_code_cb.sensitive = checkbox.active;
+
+            checkbox.toggled.connect (() => {
+                light_code_cb.sensitive = checkbox.active;
+                dark_code_cb.sensitive = checkbox.active;
+            });
+
+
             box.pack_start (checkbox, false, false, 0);
-            box.pack_start (light_code_cb, true, true, 10);
-            box.pack_start (dark_code_cb, true, true, 10);
+            box.pack_start (light_code_cb, true, true, 0);
+            box.pack_start (dark_code_cb, true, true, 0);
 
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);
-        }
-
-        private void set_dropdown_sensitive (bool is_sens) {
-            if (is_sens) {
-                light_code_cb.sensitive = true;
-                dark_code_cb.sensitive = true;
-            } else {
-                 light_code_cb.sensitive = false;
-                dark_code_cb.sensitive = false;
-            }
         }
 
         public override void set_light () {

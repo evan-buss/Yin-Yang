@@ -30,6 +30,7 @@ executable(
     'src/Plugins/TerminalTheme.vala',
     'src/Plugins/CodeTheme.vala',
     'src/Plugins/FirefoxTheme.vala',
+    'src/Plugins/Wallpaper.vala',
     gresource,
     dependencies: [
         dependency('gtk+-3.0'),

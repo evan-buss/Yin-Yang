@@ -92,5 +92,21 @@
       <summary>User's preferred Terminakl dark theme ComboBox selection</summary>
       <description>User's preferred Terminal dark theme</description>
     </key>
+
+    <key name="enable-wallpaper-theme" type="b">
+      <default>false</default>
+      <summary>Whether or not to switch the wallpaper theme between dark and light</summary>
+      <description>If enabled, the wallpaper theme will be switched when toggled between light and dark mode</description>
+    </key>
+    <key name="wallpaper-light" type="s">
+      <default>''</default>
+      <summary>User's preferred light wallpaper.</summary>
+      <description>User's preferred wallpaper URI</description>
+    </key>
+    <key name="wallpaper-dark" type="s">
+      <default>''</default>
+      <summary>User's preferred dark wallpaper.</summary>
+      <description>User's preferred wallpaper URI</description>
+    </key>
   </schema>
 </schemalist>

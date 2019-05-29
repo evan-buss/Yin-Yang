@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2011-2019 Your Organization (https://evanbuss.com)
+* Copyright (c) 2011-2019 Evan Buss (https://evanbuss.com)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -79,14 +79,6 @@ namespace YinYang.Plugins {
             checkbox = new Gtk.CheckButton ();
             settings.schema.bind ("enable-terminal-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
-            checkbox.toggled.connect (() => {
-                if (checkbox.active) {
-                    set_dropdown_sensitive (true);
-                } else {
-                    set_dropdown_sensitive (false);
-                }
-            });
-
             model = new Gtk.ListStore (4, typeof (string), typeof (string),
                                          typeof (string), typeof (bool));
 
@@ -107,28 +99,28 @@ namespace YinYang.Plugins {
 
             /* CellRenderers render the data. */
             Gtk.CellRendererText cell = new Gtk.CellRendererText ();
-            dark_terminal_cb.pack_start(cell, false);
-            dark_terminal_cb.set_attributes (cell, "text", 0);
-
-            light_terminal_cb.pack_start(cell, false);
+            light_terminal_cb.pack_start (cell, true);
+            light_terminal_cb.hexpand = true;
             light_terminal_cb.set_attributes (cell, "text", 0);
 
+            dark_terminal_cb.pack_start (cell, true);
+            dark_terminal_cb.hexpand = true;
+            dark_terminal_cb.set_attributes (cell, "text", 0);
+
+            light_terminal_cb.sensitive = checkbox.active;
+            dark_terminal_cb.sensitive = checkbox.active;
+
+            checkbox.toggled.connect (() => {
+                light_terminal_cb.sensitive = checkbox.active;
+                dark_terminal_cb.sensitive = checkbox.active;
+            });
+
             box.pack_start (checkbox, false, false, 0);
-            box.pack_start (light_terminal_cb, true, true, 10);
-            box.pack_start (dark_terminal_cb, true, true, 10);
+            box.pack_start (light_terminal_cb, true, true, 0);
+            box.pack_start (dark_terminal_cb, true, true, 0);
 
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);
-        }
-
-        private void set_dropdown_sensitive (bool is_sens) {
-            if (is_sens) {
-                light_terminal_cb.sensitive = true;
-                dark_terminal_cb.sensitive = true;
-            } else {
-                 light_terminal_cb.sensitive = false;
-                dark_terminal_cb.sensitive = false;
-            }
         }
 
         public override void set_light () {

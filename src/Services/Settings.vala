@@ -18,12 +18,12 @@ namespace YinYang.Services {
         public int terminal_theme_light { get; set; }
         public int terminal_theme_dark { get; set; }
 
-        //  public int window_width { get; set; }
-        //  public int window_height { get; set; }
+        public bool enable_wallpaper_theme { get; set; }
+        public string wallpaper_light { get; set; }
+        public string wallpaper_dark { get; set; }
+
         //  public bool is_maximized { get; set; }
-
         //  public bool indicator_state { get; set; }
-
         //  public bool background_state { get; set; }
 
         construct {

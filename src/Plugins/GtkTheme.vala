@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2011-2019 Your Organization (https://evanbuss.com)
+* Copyright (c) 2011-2019 Evan Buss (https://evanbuss.com)
 *
 * This program is free software; you can redistribute it and/or
 * modify it under the terms of the GNU General Public
@@ -47,18 +47,24 @@ namespace YinYang.Plugins {
             settings.schema.bind ("enable-gtk-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             light_gtk_entry = new Gtk.Entry ();
-            light_gtk_entry.width_chars = 15;
             light_gtk_entry.placeholder_text = "Light Theme";
             settings.schema.bind ("gtk-theme-light", light_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
             dark_gtk_entry = new Gtk.Entry ();
-            dark_gtk_entry.width_chars = 15;
             dark_gtk_entry.placeholder_text = "Dark Theme";
             settings.schema.bind ("gtk-theme-dark", dark_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
-            box.add (checkbox);
-            box.add (light_gtk_entry);
-            box.add (dark_gtk_entry);
+            light_gtk_entry.sensitive = checkbox.active;
+            dark_gtk_entry.sensitive = checkbox.active;
+
+            checkbox.toggled.connect (() => {
+                light_gtk_entry.sensitive = checkbox.active;
+                dark_gtk_entry.sensitive = checkbox.active;
+            });
+
+            box.pack_start (checkbox);
+            box.pack_start (light_gtk_entry, true, true, 0);
+            box.pack_start (dark_gtk_entry, true, true, 0);
 
             attach (label, 0, 0, 1, 1);
             attach (box, 0, 1, 1, 1);
