@@ -21,15 +21,16 @@
 */
 
 namespace YinYang.Plugins {
+
     public class Wallpaper : Plugin {
 
-		private Gtk.CheckButton checkbox;
+        private Gtk.CheckButton checkbox;
         private Gtk.FileChooserButton light_wallpaper_select;
         private Gtk.FileChooserButton dark_wallpaper_select;
         private Settings desktop_settings;
 
         public Wallpaper () {
-        	desktop_settings = new Settings ("org.gnome.desktop.background");
+            desktop_settings = new Settings ("org.gnome.desktop.background");
         }
 
         construct {
@@ -50,14 +51,14 @@ namespace YinYang.Plugins {
 
             // Load file from preferences or set to default
             if (settings.wallpaper_light == "") {
-            	light_wallpaper_select.set_current_folder_uri ("~/Pictures");
-        	} else {
-        		light_wallpaper_select.set_uri(settings.wallpaper_light);
-        	}
+                light_wallpaper_select.set_current_folder_uri ("~/Pictures");
+            } else {
+                light_wallpaper_select.set_uri (settings.wallpaper_light);
+            }
 
             // Save users's file selection choice.
             light_wallpaper_select.file_set.connect (() => {
-            	settings.wallpaper_light = light_wallpaper_select.get_uri ();
+                settings.wallpaper_light = light_wallpaper_select.get_uri ();
             });
 
             /************************
@@ -68,14 +69,14 @@ namespace YinYang.Plugins {
 
             // Load file from preferences or set to default
             if (settings.wallpaper_dark== "") {
-            	dark_wallpaper_select.set_current_folder_uri ("~/Pictures");
-        	} else {
-        		dark_wallpaper_select.set_uri(settings.wallpaper_dark);
-        	}
+                dark_wallpaper_select.set_current_folder_uri ("~/Pictures");
+            } else {
+                dark_wallpaper_select.set_uri (settings.wallpaper_dark);
+            }
 
             // Save users's file selection choice.
-			dark_wallpaper_select.file_set.connect (() => {
-            	settings.wallpaper_dark = dark_wallpaper_select.get_uri ();
+            dark_wallpaper_select.file_set.connect (() => {
+                settings.wallpaper_dark = dark_wallpaper_select.get_uri ();
             });
 
             light_wallpaper_select.sensitive = checkbox.active;
@@ -85,7 +86,6 @@ namespace YinYang.Plugins {
                 light_wallpaper_select.sensitive = checkbox.active;
                 dark_wallpaper_select.sensitive = checkbox.active;
             });
-
 
             box.pack_start (checkbox, false, false, 0);
             box.pack_start (light_wallpaper_select, true, true, 0);
@@ -97,13 +97,13 @@ namespace YinYang.Plugins {
 
         public override void set_light () {
             if (light_wallpaper_select.get_uri () != null) {
-            	desktop_settings.set_string ("picture-uri", light_wallpaper_select.get_uri ());
+                desktop_settings.set_string ("picture-uri", light_wallpaper_select.get_uri ());
             }
         }
 
         public override void set_dark () {
-         	if (dark_wallpaper_select.get_uri () != null) {
-            	desktop_settings.set_string ("picture-uri", dark_wallpaper_select.get_uri ());
+             if (dark_wallpaper_select.get_uri () != null) {
+                desktop_settings.set_string ("picture-uri", dark_wallpaper_select.get_uri ());
             }
         }
     }

@@ -85,7 +85,7 @@ namespace YinYang.Plugins {
             light_terminal_cb = new Gtk.ComboBox.with_model (model);
             dark_terminal_cb = new Gtk.ComboBox.with_model (model);
 
-            for (int i = 0; i < themes.length; i++){
+            for (int i = 0; i < themes.length; i++) {
                 Gtk.TreeIter iter;
                 model.append (out iter);
                 model.set (iter, 0, themes[i].name);

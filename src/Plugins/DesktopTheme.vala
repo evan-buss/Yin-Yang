@@ -43,7 +43,7 @@ namespace YinYang.Plugins {
             var label = new Gtk.Label ("Desktop Color Mode");
             label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
-            checkbox = new Gtk.CheckButton.with_label ("Use Prefer Dark Flag");
+            checkbox = new Gtk.CheckButton.with_label ("Toggle \"Prefer Dark\" Setting");
             settings.schema.bind ("enable-dark-desktop", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             attach (label, 0, 0, 1, 1);
