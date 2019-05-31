@@ -34,7 +34,7 @@ namespace YinYang.Plugins {
         }
 
         construct {
-            var label = new Gtk.Label ("Background");
+            var label = new Gtk.Label (_("Background"));
             label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 
@@ -46,7 +46,7 @@ namespace YinYang.Plugins {
             /************************
               Light Wallpaper File
             ************************/
-            light_wallpaper_select = new Gtk.FileChooserButton ("Light Background", Gtk.FileChooserAction.OPEN);
+            light_wallpaper_select = new Gtk.FileChooserButton (_("Light Background"), Gtk.FileChooserAction.OPEN);
             light_wallpaper_select.hexpand = true;
 
             // Load file from preferences or set to default
@@ -64,11 +64,11 @@ namespace YinYang.Plugins {
             /************************
               Dark Wallpaper File
             ************************/
-            dark_wallpaper_select = new Gtk.FileChooserButton ("Dark Background", Gtk.FileChooserAction.OPEN);
+            dark_wallpaper_select = new Gtk.FileChooserButton (_("Dark Background"), Gtk.FileChooserAction.OPEN);
             dark_wallpaper_select.hexpand = true;
 
             // Load file from preferences or set to default
-            if (settings.wallpaper_dark== "") {
+            if (settings.wallpaper_dark == "") {
                 dark_wallpaper_select.set_current_folder_uri ("~/Pictures");
             } else {
                 dark_wallpaper_select.set_uri (settings.wallpaper_dark);

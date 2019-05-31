@@ -37,7 +37,7 @@ namespace YinYang.Plugins {
         }
 
         construct {
-            var label = new Gtk.Label ("GTK Theme");
+            var label = new Gtk.Label (_("GTK Theme"));
             label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 
@@ -47,11 +47,11 @@ namespace YinYang.Plugins {
             settings.schema.bind ("enable-gtk-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             light_gtk_entry = new Gtk.Entry ();
-            light_gtk_entry.placeholder_text = "Light Theme";
+            light_gtk_entry.placeholder_text = _("Light Theme");
             settings.schema.bind ("gtk-theme-light", light_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
             dark_gtk_entry = new Gtk.Entry ();
-            dark_gtk_entry.placeholder_text = "Dark Theme";
+            dark_gtk_entry.placeholder_text = _("Dark Theme");
             settings.schema.bind ("gtk-theme-dark", dark_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
             light_gtk_entry.sensitive = checkbox.active;

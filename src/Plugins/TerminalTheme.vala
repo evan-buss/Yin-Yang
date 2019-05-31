@@ -46,19 +46,19 @@ namespace YinYang.Plugins {
 
         private theme[] themes = {
             theme () {
-                name = "Classic",
+                name = _("Classic"),
                 background = "#fff",
                 foreground = "#333",
                 prefer_dark = false
             },
             theme () {
-                name = "Solarized Light",
+                name = _("Solarized Light"),
                 background = "rgba(253, 246, 227, 0.95)",
                 foreground = "#586e75",
                 prefer_dark = false
             },
             theme () {
-                name = "Solarized Dark",
+                name = _("Solarized Dark"),
                 background = "rgba(37, 46, 50, 0.95)",
                 foreground = "#94a3a5",
                 prefer_dark = true
@@ -70,7 +70,7 @@ namespace YinYang.Plugins {
         }
 
         construct {
-            var label = new Gtk.Label ("Terminal");
+            var label = new Gtk.Label (_("Terminal"));
             label.get_style_context (). add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 

@@ -48,7 +48,7 @@ namespace YinYang.Plugins {
         }
 
         construct {
-            var label = new Gtk.Label ("Firefox (Only supports default)");
+            var label = new Gtk.Label (_("Firefox (Default Only)"));
             label.get_style_context (). add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 
@@ -59,11 +59,11 @@ namespace YinYang.Plugins {
 
             var light_firefox_entry = new Gtk.Entry ();
             light_firefox_entry.text = "Default Light";
-            light_firefox_entry.placeholder_text = "Light Theme";
+            light_firefox_entry.placeholder_text = _("Light Theme");
 
             var dark_firefox_entry = new Gtk.Entry ();
             dark_firefox_entry.text = "Default Dark";
-            dark_firefox_entry.placeholder_text = "Dark Theme";
+            dark_firefox_entry.placeholder_text = _("Dark Theme");
 
             light_firefox_entry.sensitive = checkbox.active;
             dark_firefox_entry.sensitive = checkbox.active;

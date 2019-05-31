@@ -1,3 +1,13 @@
 src/Application.vala
-data/com.github.evan-buss.yin-yang.desktop.in
-data/com.github.evan-buss.yin-yang.appdata.xml.in
+src/YinYangWindow.vala
+src/Views/MainView.vala
+src/Views/SettingsView.vala
+src/Services/Settings.vala
+src/Plugins/Plugin.vala
+src/Plugins/CodeTheme.vala
+src/Plugins/DesktopTheme.vala
+src/Plugins/FirefoxTheme.vala
+src/Plugins/GtkTheme.vala
+src/Plugins/TerminalTheme.vala
+src/Plugins/VSCodeTheme.vala
+src/Plugins/Wallpaper.vala

@@ -36,12 +36,12 @@ namespace YinYang.Views {
             /************************
               Mode Toggle Area
             ************************/
-            var header_label = new Gtk.Label ("Select Mode");
+            var header_label = new Gtk.Label (_("Select Mode"));
             header_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 
             var mode_toggle = new Granite.Widgets.ModeButton ();
-            mode_toggle.append_text ("Light");
-            mode_toggle.append_text ("Dark");
+            mode_toggle.append_text (_("Light"));
+            mode_toggle.append_text (_("Dark"));
             mode_toggle.set_active ( settings.dark_mode ? 1 : 0);
 
             mode_toggle.mode_changed.connect (() => {

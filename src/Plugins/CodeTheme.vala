@@ -28,9 +28,9 @@ namespace YinYang.Plugins {
         private Gtk.ComboBoxText dark_code_cb;
         private Settings code_settings;
         private string[,] theme_choices = {
-            {"classic", "Classic"},
-            {"solarized-light", "Solarized Light"},
-            {"solarized-dark", "Solarized Dark"}
+            {"classic", _("Classic")},
+            {"solarized-light", _("Solarized Light")},
+            {"solarized-dark", _("Solarized Dark")}
         };
 
         public CodeTheme () {
@@ -38,7 +38,7 @@ namespace YinYang.Plugins {
         }
 
         construct {
-            var label = new Gtk.Label ("Code");
+            var label = new Gtk.Label (_("Code"));
             label.get_style_context (). add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 

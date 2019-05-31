@@ -43,7 +43,7 @@ namespace YinYang.Plugins {
             /************************
               Section Label
             ************************/
-            var label = new Gtk.Label ("Visual Studio Code");
+            var label = new Gtk.Label (_("Visual Studio Code"));
             label.get_style_context (). add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 
@@ -56,14 +56,14 @@ namespace YinYang.Plugins {
               Light Theme Entry
             ************************/
             light_vscode_entry = new Gtk.Entry ();
-            light_vscode_entry.placeholder_text = "Light Theme";
+            light_vscode_entry.placeholder_text = _("Light Theme");
             settings.schema.bind ("vscode-theme-light", light_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 
             /************************
               Dark Theme Entry
             ************************/
             dark_vscode_entry = new Gtk.Entry ();
-            dark_vscode_entry.placeholder_text = "Dark Theme";
+            dark_vscode_entry.placeholder_text = _("Dark Theme");
             settings.schema.bind ("vscode-theme-dark", dark_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 
             light_vscode_entry.sensitive = checkbox.active;

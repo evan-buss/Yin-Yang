@@ -18,7 +18,7 @@ namespace YinYang.Views {
             /************************
               View Title
             ************************/
-            var header_label = new Gtk.Label ("Theme Settings");
+            var header_label = new Gtk.Label (_("Theme Settings"));
             header_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
             header_label.halign = Gtk.Align.CENTER;
 

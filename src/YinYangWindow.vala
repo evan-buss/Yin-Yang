@@ -82,7 +82,7 @@ namespace YinYang {
             headerbar.get_style_context ().add_class ("default-decoration");
             headerbar.show_close_button = true;
             set_titlebar (headerbar);
-            title = "Yin and Yang";
+            title = _("Yin and Yang");
 
             /************************
               Settings Toggle Button
@@ -90,7 +90,7 @@ namespace YinYang {
             var settings_button =
             new Gtk.Button.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
             settings_button.valign = Gtk.Align.CENTER;
-            settings_button.set_tooltip_text ("Edit Settings (Ctrl+S)");
+            settings_button.set_tooltip_text (_("Edit Settings (Ctrl+S)"));
 
             headerbar.pack_end (settings_button);
 
