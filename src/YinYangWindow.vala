@@ -29,14 +29,24 @@ namespace YinYang {
         public Services.Settings settings;
         public bool mode_setting;
         private Gtk.Stack stack;
+        public DBusServer dbusserver;
 
-        public YinYangWindow () {
+        public YinYangWindow (Application app) {
             Object (
                 resizable: false,
                 default_width: 200,
                 default_height: 400,
                 window_position: Gtk.WindowPosition.CENTER
             );
+
+            dbusserver = DBusServer.get_default ();
+            dbusserver.quit.connect (() => app.quit());
+            dbusserver.show.connect (() => {
+                this.deiconify();
+                this.present();
+                this.show_all ();
+            });
+
 
             main_view.mode_changed.connect ((is_dark) => {
                 if (is_dark) {

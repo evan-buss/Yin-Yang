@@ -3,7 +3,7 @@
 > Yin-Yang brings automatic day and night theme-switching to Elementary OS
 
 <p align="center">
-    <img align="center" src="https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_1.png" alt="dark_mode">    
+    <img align="center" src="https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_1.png" alt="dark_mode">
 </p>
 
 <p align="center">
@@ -27,6 +27,7 @@
 - [x] Pantheon Terminal Theme Switching
 - [X] Pantheon Code Editor Theme Switching
 - [X] Firefox Theme Switching
+- [X] Wallpaper Background Switching
 - [ ] Automatic theme switching at a specific time
 - [ ] Wingpanel Integration
 - [ ] Notifications

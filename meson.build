@@ -21,6 +21,7 @@ executable(
     'src/Application.vala',
     'src/YinYangWindow.vala',
     'src/Services/Settings.vala',
+    'src/Services/DBusServer.vala',
     'src/Views/SettingsView.vala',
     'src/Views/MainView.vala',
     'src/Plugins/Plugin.vala',
@@ -36,9 +37,32 @@ executable(
         dependency('gtk+-3.0'),
         dependency('unity'),
         dependency('granite'),
-        dependency('json-glib-1.0')
+        dependency('json-glib-1.0'),
+        dependency ('gio-2.0')
     ],
     install: true
+)
+
+wingpanel_dep = dependency('wingpanel-2.0')
+
+# Wingpanel Indicator Module
+shared_module(
+    meson.project_name(),
+    'src/Indicator/Indicator.vala',
+    'src/Indicator/Services/DBusClient.vala',
+    'src/Indicator/Widgets/DisplayWidget.vala',
+    'src/Indicator/Widgets/PopoverWidget.vala',
+    gresource,
+    dependencies: [
+        dependency('glib-2.0'),
+        dependency('gobject-2.0'),
+        dependency('granite'),
+        dependency('gtk+-3.0'),
+        wingpanel_dep
+    ],
+    install: true,
+    install_dir : wingpanel_dep.get_pkgconfig_variable('indicatorsdir')
+    # install_dir : '/usr/lib/x86_64-linux-gnu/wingpanel/'
 )
 
 #Translate and install our .desktop file

@@ -49,7 +49,7 @@ namespace YinYang {
             /************************
                 Construct Window
             ************************/
-            window = new YinYangWindow ();
+            window = new YinYangWindow (this);
             window.set_application (this);
             window.show_all ();
         }
