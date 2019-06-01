@@ -23,7 +23,7 @@ public class YinYang.DBusServer : Object {
         );
     }
 
-    public void quit_yin_yang () throws IOError, DBusError {
+    public void quit_yinyang () throws IOError, DBusError {
         quit ();
     }
 

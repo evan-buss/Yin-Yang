@@ -23,10 +23,8 @@
 public class YinYang.Indicator : Wingpanel.Indicator {
 
     private Wingpanel.Widgets.OverlayIcon display_widget;
-    //  private Wingpanel.Widgets.OverlayIcon display_widget;
-    private Widgets.PopoverWidget? popover_widget = null;
-    //  private Gtk.Grid main_widget;
-    //  private DBusClient dbusclient;
+    private Widgets.PopoverWidget popover_widget;
+    private DBusClient dbusclient;
 
     public Indicator () {
         Object (
@@ -35,21 +33,32 @@ public class YinYang.Indicator : Wingpanel.Indicator {
             description: _("Toggle between light and dark application themes"),
             visible: true
         );
-        //  dbusclient = DBusClient.get_default ();
-        //  // When the dbus namespace closes, hide the indicator
-        //  dbusclient.yinyang_appeared.connect (() => {
-        //      message ("monitor appeared");
-        //      this.visible = true;
-        //  });
-
-        //  dbusclient.yinyang_vanished.connect (() => {
-        //      message ("monitor vanished");
-        //      this.visible = false;
-        //  });
     }
 
     construct {
+        dbusclient = DBusClient.get_default ();
         display_widget = new Wingpanel.Widgets.OverlayIcon ("internet-web-browser");
+        popover_widget = new Widgets.PopoverWidget ();
+
+         // When the dbus namespace closes, hide the indicator
+        dbusclient.yinyang_appeared.connect (() => {
+            message ("yinyang appeared");
+            this.visible = true;
+        });
+
+        dbusclient.yinyang_vanished.connect (() => {
+            message ("yinyang vanished");
+            this.visible = false;
+        });
+
+        popover_widget.show_yinyang_button.clicked.connect (() => {
+            dbusclient.interface.show_yinyang_window ();
+        });
+
+        popover_widget.quit_yinyang_button.clicked.connect (() => {
+            dbusclient.interface.quit_yinyang ();
+            this.visible = false;
+        });
     }
 
     /* This method is called to get the widget that is displayed in the top bar */
@@ -59,9 +68,6 @@ public class YinYang.Indicator : Wingpanel.Indicator {
 
     /* This method is called to get the widget that is displayed in the popover */
     public override Gtk.Widget? get_widget () {
-        if (popover_widget == null) {
-            popover_widget = new Widgets.PopoverWidget ();
-        }
         return popover_widget;
     }
 

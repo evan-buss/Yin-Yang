@@ -39,20 +39,11 @@ public class YinYang.Widgets.PopoverWidget : Gtk.Box {
         show_yinyang_button.hexpand = true;
         show_yinyang_button.centered = true;
 
-        //  show_yinyang_button.clicked.connect (() => {
-        //      //  dbusclient.interface.show_yinyang_window ();
-        //      //  close ();
-        //  });
 
         quit_yinyang_button = new Gtk.ModelButton ();
         quit_yinyang_button.text = _("Quit Yin-Yang");
         quit_yinyang_button.hexpand = true;
         quit_yinyang_button.centered = true;
-
-        //  quit_yinyang_button.clicked.connect (() => {
-        //      //  dbusclient.interface.quit_yinyang ();
-        //      //  this.visible = false;
-        //  });
 
         add (show_yinyang_button);
         add (new Wingpanel.Widgets.Separator ());
