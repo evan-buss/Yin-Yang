@@ -22,19 +22,20 @@
 
 public class YinYang.Indicator : Wingpanel.Indicator {
 
-    private Widgets.DisplayWidget? display_widget = null;
+    private Wingpanel.Widgets.OverlayIcon display_widget;
+    //  private Wingpanel.Widgets.OverlayIcon display_widget;
     private Widgets.PopoverWidget? popover_widget = null;
-    private DBusClient dbusclient;
+    //  private Gtk.Grid main_widget;
+    //  private DBusClient dbusclient;
 
     public Indicator () {
         Object (
-            code_name: _("yin-yang"),
+            code_name: "yin-yang-indicator",
             display_name: _("Yin and Yang"),
-            description: _("Switch application themes"),
-            visible: false
+            description: _("Toggle between light and dark application themes"),
+            visible: true
         );
-        dbusclient = DBusClient.get_default ();
-
+        //  dbusclient = DBusClient.get_default ();
         //  // When the dbus namespace closes, hide the indicator
         //  dbusclient.yinyang_appeared.connect (() => {
         //      message ("monitor appeared");
@@ -47,26 +48,21 @@ public class YinYang.Indicator : Wingpanel.Indicator {
         //  });
     }
 
-    /************************
-      Default Methods
-    ************************/
+    construct {
+        display_widget = new Wingpanel.Widgets.OverlayIcon ("internet-web-browser");
+    }
+
     /* This method is called to get the widget that is displayed in the top bar */
     public override Gtk.Widget get_display_widget () {
-        if (display_widget == null) {
-            display_widget = new Widgets.DisplayWidget ();
-        }
-
         return display_widget;
     }
 
     /* This method is called to get the widget that is displayed in the popover */
     public override Gtk.Widget? get_widget () {
         if (popover_widget == null) {
-            popover_widget = new Widgets.PopoverWidget (this);
+            popover_widget = new Widgets.PopoverWidget ();
         }
-
-        //  return popover_widget;
-        return new Gtk.Grid ();
+        return popover_widget;
     }
 
     /* This method is called when the indicator popover opened */

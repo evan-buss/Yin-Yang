@@ -46,7 +46,7 @@ wingpanel_dep = dependency('wingpanel-2.0')
 
 # Wingpanel Indicator Executable
 shared_module(
-    meson.project_name(),
+    'yinyang',
     'src/Indicator/Indicator.vala',
     'src/Indicator/Services/DBusClient.vala',
     'src/Indicator/Widgets/DisplayWidget.vala',
@@ -61,7 +61,6 @@ shared_module(
     ],
     install: true,
     install_dir : wingpanel_dep.get_pkgconfig_variable('indicatorsdir')
-    # install_dir : '/usr/lib/x86_64-linux-gnu/wingpanel/'
 )
 
 #Translate and install our .desktop file

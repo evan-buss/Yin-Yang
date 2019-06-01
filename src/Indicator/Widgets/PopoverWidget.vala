@@ -20,70 +20,62 @@
 
 */
 
-public class YinYang.Widgets.PopoverWidget : Gtk.Grid {
-    public unowned YinYang.Indicator indicator { get; set; }
+public class YinYang.Widgets.PopoverWidget : Gtk.Box {
 
     public Gtk.ModelButton show_yinyang_button;
     public Gtk.ModelButton quit_yinyang_button;
 
-    private Gtk.Grid scale_grid;
-    private Gtk.Image image;
-    private Gtk.Scale temp_scale;
-
-    public PopoverWidget (YinYang.Indicator indicator) {
-      Object (
-        indicator: indicator
-      );
-
-//     show_yinyang_button.clicked.connect (() => {
-//          //  dbusclient.interface.show_yinyang_window ();
-//          //  close ();
-//      });
-
-//      quit_yinyang_button.clicked.connect (() => {
-//          //  dbusclient.interface.quit_yinyang ();
-//          //  this.visible = false;
-//      });
+    public PopoverWidget () {
+        Object (
+            orientation: Gtk.Orientation.VERTICAL
+        );
     }
 
     construct {
-    //   show_yinyang_button = new Gtk.ModelButton ();
-    //   show_yinyang_button.text = _("Show Yin-Yang");
+        orientation = Gtk.Orientation.VERTICAL;
 
-    //   quit_yinyang_button = new Gtk.ModelButton ();
-    //   quit_yinyang_button.text = _("Quit Yin-Yang");
+        show_yinyang_button = new Gtk.ModelButton ();
+        show_yinyang_button.text = _("Show Yin-Yang");
+        show_yinyang_button.hexpand = true;
+        show_yinyang_button.centered = true;
 
-    //   var icon = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        //  show_yinyang_button.clicked.connect (() => {
+        //      //  dbusclient.interface.show_yinyang_window ();
+        //      //  close ();
+        //  });
 
-    //   add (show_yinyang_button);
-    //   add (new Wingpanel.Widgets.Separator ());
-    //   add (quit_yinyang_button);
-    orientation = Gtk.Orientation.VERTICAL;
+        quit_yinyang_button = new Gtk.ModelButton ();
+        quit_yinyang_button.text = _("Quit Yin-Yang");
+        quit_yinyang_button.hexpand = true;
+        quit_yinyang_button.centered = true;
 
-        image = new Gtk.Image ();
-        image.pixel_size = 48;
+        //  quit_yinyang_button.clicked.connect (() => {
+        //      //  dbusclient.interface.quit_yinyang ();
+        //      //  this.visible = false;
+        //  });
 
-        temp_scale = new Gtk.Scale.with_range (Gtk.Orientation.HORIZONTAL, 3500, 6000, 10);
-        temp_scale.draw_value = false;
-        temp_scale.has_origin = false;
-        temp_scale.hexpand = true;
-        temp_scale.inverted = true;
-        temp_scale.width_request = 200;
-        temp_scale.get_style_context ().add_class ("warmth");
-
-        scale_grid = new Gtk.Grid ();
-        scale_grid.column_spacing = 6;
-        scale_grid.margin_start = 6;
-        scale_grid.margin_end = 12;
-        scale_grid.add (image);
-        scale_grid.add (temp_scale);
-
-        var settings_button = new Gtk.ModelButton ();
-        settings_button.text = _("Night Light Settings…");
-
+        add (show_yinyang_button);
         add (new Wingpanel.Widgets.Separator ());
-        add (scale_grid);
-        add (new Wingpanel.Widgets.Separator ());
-        add (settings_button);
+        add (quit_yinyang_button);
+
+
+        //  var compositing_switch = new Wingpanel.Widgets.Switch (_("Composited Icon"));
+
+
+        //  attach (hide_button, 0, 0);
+        //  attach (new Wingpanel.Widgets.Separator (), 0, 1);
+        //  attach (compositing_switch, 0, 2);
+
+        //  /* Indicator should be visible at startup */
+        //  this.visible = true;
+
+        //  hide_button.clicked.connect (() => {
+        //      this.visible = false;
+
+        //      Timeout.add (2000, () => {
+        //          this.visible = true;
+        //          return false;
+        //      });
+        //  });
     }
 }

@@ -26,8 +26,7 @@ public class YinYang.Widgets.DisplayWidget : Gtk.Box {
     }
 
     construct {
-        message ("Created display widget");
-        var icon = new Gtk.Image.from_icon_name ("open-menu-symbolic", Gtk.IconSize.SMALL_TOOLBAR);
+        var icon = new Wingpanel.Widgets.OverlayIcon ("internet-web-browser");
         add (icon);
     }
 }
