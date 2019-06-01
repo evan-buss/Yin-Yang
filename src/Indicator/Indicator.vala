@@ -30,17 +30,21 @@ public class YinYang.Indicator : Wingpanel.Indicator {
         Object (
             code_name: _("yin-yang"),
             display_name: _("Yin and Yang"),
-            description: _("Switch application themes")
+            description: _("Switch application themes"),
+            visible: false
         );
-    }
-
-    construct {
-        display_widget = new Widgets.DisplayWidget ();
-        popover_widget = new Widgets.PopoverWidget ();
         dbusclient = DBusClient.get_default ();
-        dbusclient.yinyang_vanished.connect (() => this.visible = false);
-        dbusclient.yinyang_appeared.connect (() => this.visible = true);
-        this.visible = true;
+
+        //  // When the dbus namespace closes, hide the indicator
+        //  dbusclient.yinyang_appeared.connect (() => {
+        //      message ("monitor appeared");
+        //      this.visible = true;
+        //  });
+
+        //  dbusclient.yinyang_vanished.connect (() => {
+        //      message ("monitor vanished");
+        //      this.visible = false;
+        //  });
     }
 
     /************************
@@ -48,13 +52,21 @@ public class YinYang.Indicator : Wingpanel.Indicator {
     ************************/
     /* This method is called to get the widget that is displayed in the top bar */
     public override Gtk.Widget get_display_widget () {
-        message ("getting display widget called");
+        if (display_widget == null) {
+            display_widget = new Widgets.DisplayWidget ();
+        }
+
         return display_widget;
     }
 
     /* This method is called to get the widget that is displayed in the popover */
     public override Gtk.Widget? get_widget () {
-        return popover_widget;
+        if (popover_widget == null) {
+            popover_widget = new Widgets.PopoverWidget (this);
+        }
+
+        //  return popover_widget;
+        return new Gtk.Grid ();
     }
 
     /* This method is called when the indicator popover opened */
@@ -73,7 +85,7 @@ public class YinYang.Indicator : Wingpanel.Indicator {
  */
 public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorManager.ServerType server_type) {
     /* A small message for debugging reasons */
-    message ("Activating Yin-Yang Indicator");
+    debug ("Activating Yin-Yang Indicator");
 
     /* Check which server has loaded the plugin */
     if (server_type != Wingpanel.IndicatorManager.ServerType.SESSION) {

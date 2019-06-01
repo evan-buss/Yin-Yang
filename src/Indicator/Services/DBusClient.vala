@@ -1,7 +1,7 @@
 [DBus (name = "com.github.evan_buss.yin_yang")]
 public interface YinYang.DBusClientInterface : Object {
-    public abstract void quit_yin_yang () throws IOError;
-    public abstract void show_window () throws IOError;
+    public abstract void quit_yinyang () throws IOError;
+    public abstract void show_yinyang_window () throws IOError;
 }
 
 public class YinYang.DBusClient : Object{
@@ -12,6 +12,7 @@ public class YinYang.DBusClient : Object{
     public DBusClientInterface? interface = null;
 
     private static GLib.Once<DBusClient> instance;
+
     public static unowned DBusClient get_default () {
         return instance.once (() => { return new DBusClient (); });
     }

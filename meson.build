@@ -15,7 +15,7 @@ gresource = gnome.compile_resources(
     c_name: 'as'
 )
 
-# Create a new executable, list the files we want to compile, list the dependencies we need, and install
+# Main application executable
 executable(
     meson.project_name(),
     'src/Application.vala',
@@ -38,14 +38,13 @@ executable(
         dependency('unity'),
         dependency('granite'),
         dependency('json-glib-1.0'),
-        dependency ('gio-2.0')
     ],
     install: true
 )
 
 wingpanel_dep = dependency('wingpanel-2.0')
 
-# Wingpanel Indicator Module
+# Wingpanel Indicator Executable
 shared_module(
     meson.project_name(),
     'src/Indicator/Indicator.vala',
