@@ -27,7 +27,7 @@ public class YinYang.DBusServer : Object {
         quit ();
     }
 
-    public void show_window () throws IOError, DBusError {
+    public void show_yinyang () throws IOError, DBusError {
         show ();
     }
 

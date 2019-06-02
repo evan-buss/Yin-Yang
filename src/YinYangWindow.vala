@@ -27,20 +27,23 @@ namespace YinYang {
         public Views.MainView main_view;
         public Views.SettingsView settings_view;
         public Services.Settings settings;
-        public bool mode_setting;
         private Gtk.Stack stack;
         public DBusServer dbusserver;
 
         public YinYangWindow (Application app) {
             Object (
-                resizable: false,
+                resizable: true,
                 default_width: 200,
                 default_height: 400,
                 window_position: Gtk.WindowPosition.CENTER
             );
 
             dbusserver = DBusServer.get_default ();
+
+            //  User selects "quit" from wingpanel indicator
             dbusserver.quit.connect (() => app.quit());
+
+            //  User selects "show" from wingpanel indicator
             dbusserver.show.connect (() => {
                 this.deiconify();
                 this.present();
@@ -48,15 +51,12 @@ namespace YinYang {
             });
 
 
+            //  Listen for the mode to be changed (dark/light button clicked)
             main_view.mode_changed.connect ((is_dark) => {
-                if (is_dark) {
-                    set_all_dark ();
-                } else {
-                    set_all_light ();
-                }
+               set_themes (is_dark);
             });
 
-            //  Open the Settings view on "Ctrl+S"
+            //  Toggle between views using "Ctrl+S"
             key_press_event.connect ((e) => {
                 if ((e.state & Gdk.ModifierType.CONTROL_MASK) != 0) {
                     if (e.keyval == Gdk.Key.s) {
@@ -65,6 +65,18 @@ namespace YinYang {
                     }
                 }
                return false;
+            });
+
+            // Either close the app or hide it depending if the user wants the
+            //  them to automatically switch between modes
+            delete_event.connect (() => {
+                if (settings.enable_auto_switch == true) {
+                    this.hide_on_delete ();
+                } else {
+                    //  dbusserver.indicator_state (false);
+                    app.quit ();
+                }
+                return true;
             });
         }
 
@@ -108,7 +120,7 @@ namespace YinYang {
               Create Views
             ************************/
             stack = new Gtk.Stack ();
-            main_view = new Views.MainView (this);
+            main_view = new Views.MainView ();
             settings_view = new Views.SettingsView ();
             stack.add_named (main_view, "main");
             stack.add_named (settings_view, "settings");
@@ -140,6 +152,14 @@ namespace YinYang {
             }
         }
 
+        private void set_themes (bool is_dark) {
+            if (is_dark) {
+                set_all_dark ();
+            } else {
+                set_all_light ();
+            }
+        }
+
         private void toggle_view () {
             //  Settings --> Main
             if (stack.visible_child == main_view) {
@@ -147,7 +167,7 @@ namespace YinYang {
                 stack.set_visible_child (settings_view);
             } else {
                 // Main --> Settings
-                //  FIXME: Navigating back to settings should update all themes immediately based on new settings
+                set_themes (settings.dark_mode);
                 stack.set_transition_type (Gtk.StackTransitionType.SLIDE_RIGHT);
                 stack.set_visible_child (main_view);
             }

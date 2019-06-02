@@ -1,0 +1,3 @@
+☐ Wallpaper is not set in greeter, just the background
+    - Need to modify user's background file (involves dbus)
+☐ File selectors should not expand. They need to ellipsize long text.

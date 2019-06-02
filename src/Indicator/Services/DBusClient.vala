@@ -1,10 +1,10 @@
 [DBus (name = "com.github.evan_buss.yin_yang")]
 public interface YinYang.DBusClientInterface : Object {
     public abstract void quit_yinyang () throws IOError;
-    public abstract void show_yinyang_window () throws IOError;
+    public abstract void show_yinyang () throws IOError;
 }
 
-public class YinYang.DBusClient : Object{
+public class YinYang.DBusClient : Object {
 
     private const string DBUS_NAME = "com.github.evan_buss.yin_yang";
     private const string DBUS_PATH = "/com/github/evan_buss/yin_yang";

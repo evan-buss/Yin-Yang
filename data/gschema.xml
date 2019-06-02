@@ -7,7 +7,7 @@
       <summary></summary>
       <description></description>
     </key> -->
-
+    <!-- TODO: Maybe split certain plugin settings into specific subfolders -->
     <key name="dark-mode" type="b">
       <default>false</default>
       <summary>Sets the preferred application theme settings</summary>
@@ -15,6 +15,14 @@
       	false means that every application will use the light theme
       </description>
     </key>
+
+    <key name="enable-auto-switch" type="b">
+      <default>false</default>
+      <summary>Enables automatically switching from dark to light modes at sunrise and sunset.</summary>
+      <description>Enabling this makes it so that closing the application just hides the window.
+      The indicator will appear in the wingpanel and show the current mode status</description>
+    </key>
+
 
     <key name="enable-dark-desktop" type="b">
       <default>false</default>

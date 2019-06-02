@@ -2,17 +2,14 @@ namespace YinYang.Views {
 
     public class MainView : Gtk.Grid {
 
-        public Gtk.ApplicationWindow window { get; construct; }
-        //  public Settings settings { get; construct; }
         private Services.Settings settings;
+
         public signal void mode_changed (bool is_dark);
 
-        public MainView (Gtk.ApplicationWindow window) {
+        public MainView () {
             Object (
                 halign: Gtk.Align.CENTER,
-                //  valign: Gtk.Align.CENTER,
-                margin: 8,
-                window: window
+                margin: 8
             );
         }
 
@@ -43,6 +40,7 @@ namespace YinYang.Views {
             mode_toggle.append_text (_("Light"));
             mode_toggle.append_text (_("Dark"));
             mode_toggle.set_active ( settings.dark_mode ? 1 : 0);
+            mode_toggle.margin_bottom = 20;
 
             mode_toggle.mode_changed.connect (() => {
                 if (mode_toggle.selected == 1) {
@@ -56,9 +54,28 @@ namespace YinYang.Views {
                 }
             });
 
+
+            /************************
+              Auto Switch Toggle
+            ************************/
+            var auto_label = new Gtk.Label ("Enable Automatic Theme Switching");
+            auto_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
+
+            var auto_toggle = new Gtk.Switch ();
+            settings.schema.bind ("enable-auto-switch", auto_toggle, "active", SettingsBindFlags.DEFAULT);
+            auto_toggle.valign = Gtk.Align.CENTER;
+            auto_toggle.halign = Gtk.Align.CENTER;
+            auto_toggle.margin = 5;
+
+            var details = new Gtk.Label ("Mode is toggled at sunset and sunrise");
+            details.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+
             attach (app_icon, 0, 0, 1, 1);
             attach (header_label, 0, 1, 1, 1);
             attach (mode_toggle, 0, 2, 1, 1);
+            attach (auto_label, 0, 4, 1, 1);
+            attach (auto_toggle, 0, 5, 1, 1);
+            attach (details, 0, 6, 1, 1);
         }
     }
 }

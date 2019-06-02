@@ -42,17 +42,17 @@ public class YinYang.Indicator : Wingpanel.Indicator {
 
          // When the dbus namespace closes, hide the indicator
         dbusclient.yinyang_appeared.connect (() => {
-            message ("yinyang appeared");
+            debug ("yinyang appeared");
             this.visible = true;
         });
 
         dbusclient.yinyang_vanished.connect (() => {
-            message ("yinyang vanished");
+            debug ("yinyang vanished");
             this.visible = false;
         });
 
         popover_widget.show_yinyang_button.clicked.connect (() => {
-            dbusclient.interface.show_yinyang_window ();
+            dbusclient.interface.show_yinyang ();
         });
 
         popover_widget.quit_yinyang_button.clicked.connect (() => {

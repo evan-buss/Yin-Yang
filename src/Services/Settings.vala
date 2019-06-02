@@ -6,6 +6,9 @@ namespace YinYang.Services {
         }
 
         public bool dark_mode { get; set; }
+
+        public bool enable_auto_switch { get; set; }
+
         public bool enable_dark_desktop { get; set; }
 
         public bool enable_gtk_theme { get; set; }
@@ -28,7 +31,7 @@ namespace YinYang.Services {
 
         construct {
             // Controls the default application theme mode
-             if (dark_mode) {
+            if (dark_mode) {
                 Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
             } else {
                 Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
