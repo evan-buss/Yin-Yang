@@ -11,6 +11,7 @@ public class YinYang.DBusServer : Object {
 
     public signal void quit ();
     public signal void show ();
+    public signal void indicator_state (bool is_showing);
 
     construct {
         Bus.own_name (

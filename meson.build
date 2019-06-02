@@ -20,10 +20,14 @@ executable(
     meson.project_name(),
     'src/Application.vala',
     'src/YinYangWindow.vala',
+
     'src/Services/Settings.vala',
     'src/Services/DBusServer.vala',
+    'src/Services/BackgroundManager.vala',
+
     'src/Views/SettingsView.vala',
     'src/Views/MainView.vala',
+
     'src/Plugins/Plugin.vala',
     'src/Plugins/DesktopTheme.vala',
     'src/Plugins/GtkTheme.vala',
@@ -48,9 +52,9 @@ wingpanel_dep = dependency('wingpanel-2.0')
 shared_module(
     'yinyang',
     'src/Indicator/Indicator.vala',
-    'src/Indicator/Services/DBusClient.vala',
-    'src/Indicator/Widgets/DisplayWidget.vala',
     'src/Indicator/Widgets/PopoverWidget.vala',
+    'src/Indicator/Services/DBusClient.vala',
+    'src/Services/Settings.vala',
     gresource,
     dependencies: [
         dependency('glib-2.0'),

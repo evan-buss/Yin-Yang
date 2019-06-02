@@ -25,6 +25,7 @@ public class YinYang.Indicator : Wingpanel.Indicator {
     private Wingpanel.Widgets.OverlayIcon display_widget;
     private Widgets.PopoverWidget popover_widget;
     private DBusClient dbusclient;
+    private YinYang.Services.Settings settings;
 
     public Indicator () {
         Object (
@@ -37,20 +38,36 @@ public class YinYang.Indicator : Wingpanel.Indicator {
 
     construct {
         dbusclient = DBusClient.get_default ();
+        settings = Services.Settings.get_default ();
+
+        /************************
+          Create Indicator Widgets
+        ************************/
         display_widget = new Wingpanel.Widgets.OverlayIcon ("internet-web-browser");
         popover_widget = new Widgets.PopoverWidget ();
 
-         // When the dbus namespace closes, hide the indicator
+        /************************
+          Listen for DBus Events
+        ************************/
+        // When dbus namespace server opens, show the indicator if set
         dbusclient.yinyang_appeared.connect (() => {
             debug ("yinyang appeared");
-            this.visible = true;
+            this.visible = settings.enable_auto_switch;
         });
 
+        // When dbus namespace server closes hide the indicator
         dbusclient.yinyang_vanished.connect (() => {
             debug ("yinyang vanished");
             this.visible = false;
         });
 
+        dbusclient.interface.indicator_state.connect ((is_showing) => {
+            this.visible = is_showing;
+        });
+
+        /************************
+          Popover Button Actions
+        ************************/
         popover_widget.show_yinyang_button.clicked.connect (() => {
             dbusclient.interface.show_yinyang ();
         });
@@ -91,7 +108,7 @@ public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorMan
 
     /* Check which server has loaded the plugin */
     if (server_type != Wingpanel.IndicatorManager.ServerType.SESSION) {
-        /* We want to display our monitor indicator only in the "normal" session, not on the login screen, so stop here! */
+        /* We want to display our monitor indicator only in the "normal" session */
         return null;
     }
 

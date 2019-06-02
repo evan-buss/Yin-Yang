@@ -27,33 +27,56 @@ namespace YinYang {
         public Views.MainView main_view;
         public Views.SettingsView settings_view;
         public Services.Settings settings;
-        private Gtk.Stack stack;
         public DBusServer dbusserver;
+        private Gtk.Stack stack;
+        private Services.BackgroundManager manager;
 
         public YinYangWindow (Application app) {
             Object (
-                resizable: true,
+                resizable: false,
                 default_width: 200,
                 default_height: 400,
                 window_position: Gtk.WindowPosition.CENTER
             );
 
+            /************************
+              DBus Actions
+            ************************/
             dbusserver = DBusServer.get_default ();
 
             //  User selects "quit" from wingpanel indicator
-            dbusserver.quit.connect (() => app.quit());
+            dbusserver.quit.connect (() => app.quit ());
 
             //  User selects "show" from wingpanel indicator
             dbusserver.show.connect (() => {
-                this.deiconify();
-                this.present();
+                this.deiconify ();
                 this.show_all ();
+                this.present ();
             });
 
+            /************************
+              Background Manager
+            ************************/
+            //  Change themes when nightlight starts and ends
+            manager.active_changed.connect ((is_dark) => {
+                debug ("Nightlight status changed!");
+                set_themes(is_dark);              // Load plugin theme settings
+                main_view.mode_toggle.set_active (is_dark ? 1 : 0);
+                //  main_view.mode_toggle.mode_changed (null);
+            });
 
+            /************************
+              Event Listeners
+            ************************/
             //  Listen for the mode to be changed (dark/light button clicked)
             main_view.mode_changed.connect ((is_dark) => {
-               set_themes (is_dark);
+                set_themes (is_dark);
+            });
+
+            //  Only show the wingpanel indicator auto switch enabled
+            main_view.auto_toggle.notify["active"].connect (() => {
+                message ("auto toggle switched");
+                dbusserver.indicator_state (settings.enable_auto_switch);
             });
 
             //  Toggle between views using "Ctrl+S"
@@ -73,7 +96,7 @@ namespace YinYang {
                 if (settings.enable_auto_switch == true) {
                     this.hide_on_delete ();
                 } else {
-                    //  dbusserver.indicator_state (false);
+                    dbusserver.indicator_state (false);
                     app.quit ();
                 }
                 return true;
@@ -85,6 +108,11 @@ namespace YinYang {
               Load Existing Preferences
             ************************/
             settings = Services.Settings.get_default ();
+
+            /************************
+              Load Background Manager
+            ************************/
+            manager = Services.BackgroundManager.get_instance ();
 
             /************************
               Load External CSS
@@ -167,7 +195,7 @@ namespace YinYang {
                 stack.set_visible_child (settings_view);
             } else {
                 // Main --> Settings
-                set_themes (settings.dark_mode);
+                set_themes (settings.dark_mode); // Re-apply changed settings
                 stack.set_transition_type (Gtk.StackTransitionType.SLIDE_RIGHT);
                 stack.set_visible_child (main_view);
             }
