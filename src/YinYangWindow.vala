@@ -75,7 +75,6 @@ namespace YinYang {
 
             //  Only show the wingpanel indicator auto switch enabled
             main_view.auto_toggle.notify["active"].connect (() => {
-                message ("auto toggle switched");
                 dbusserver.indicator_state (settings.enable_auto_switch);
             });
 

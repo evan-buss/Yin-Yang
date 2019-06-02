@@ -48,23 +48,36 @@ namespace YinYang.Plugins {
         }
 
         construct {
+            /************************
+              Label
+            ************************/
             var label = new Gtk.Label (_("Firefox (Default Only)"));
             label.get_style_context (). add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 
-            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
-
             checkbox = new Gtk.CheckButton ();
             settings.schema.bind ("enable-firefox-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
+            /************************
+              Light Entry
+            ************************/
             var light_firefox_entry = new Gtk.Entry ();
             light_firefox_entry.text = "Default Light";
             light_firefox_entry.placeholder_text = _("Light Theme");
+            light_firefox_entry.hexpand = true;
 
+
+            /************************
+              Dark Entry
+            ************************/
             var dark_firefox_entry = new Gtk.Entry ();
             dark_firefox_entry.text = "Default Dark";
             dark_firefox_entry.placeholder_text = _("Dark Theme");
+            dark_firefox_entry.hexpand = true;
 
+            /************************
+              Layout Settings
+            ************************/
             light_firefox_entry.sensitive = checkbox.active;
             dark_firefox_entry.sensitive = checkbox.active;
 
@@ -73,7 +86,9 @@ namespace YinYang.Plugins {
                 dark_firefox_entry.sensitive = checkbox.active;
             });
 
-            box.pack_start (checkbox);
+            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+
+            box.pack_start (checkbox, false, false, 0);
             box.pack_start (light_firefox_entry, true, true, 0);
             box.pack_start (dark_firefox_entry, true, true, 0);
 

@@ -7,7 +7,6 @@ namespace YinYang.Views {
 
         public SettingsView () {
             Object (
-                halign: Gtk.Align.START,
                 margin: 8
             );
 

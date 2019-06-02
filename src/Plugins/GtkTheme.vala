@@ -37,23 +37,35 @@ namespace YinYang.Plugins {
         }
 
         construct {
+
+            /************************
+              Label
+            ************************/
             var label = new Gtk.Label (_("GTK Theme"));
             label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
-
-            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
-
             checkbox = new Gtk.CheckButton ();
             settings.schema.bind ("enable-gtk-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
+            /************************
+              Light Theme Selector
+            ************************/
             light_gtk_entry = new Gtk.Entry ();
             light_gtk_entry.placeholder_text = _("Light Theme");
+            light_gtk_entry.hexpand = true;
             settings.schema.bind ("gtk-theme-light", light_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
+            /************************
+              Dark Theme Selector
+            ************************/
             dark_gtk_entry = new Gtk.Entry ();
             dark_gtk_entry.placeholder_text = _("Dark Theme");
+            dark_gtk_entry.hexpand = true;
             settings.schema.bind ("gtk-theme-dark", dark_gtk_entry, "text", SettingsBindFlags.DEFAULT);
 
+            /************************
+              Layout Settings
+            ************************/
             light_gtk_entry.sensitive = checkbox.active;
             dark_gtk_entry.sensitive = checkbox.active;
 
@@ -62,7 +74,9 @@ namespace YinYang.Plugins {
                 dark_gtk_entry.sensitive = checkbox.active;
             });
 
-            box.pack_start (checkbox);
+            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+
+            box.pack_start (checkbox, false, false, 0);
             box.pack_start (light_gtk_entry, true, true, 0);
             box.pack_start (dark_gtk_entry, true, true, 0);
 

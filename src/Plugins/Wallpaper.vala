@@ -44,10 +44,10 @@ namespace YinYang.Plugins {
             settings.schema.bind ("enable-wallpaper-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
 
             /************************
-              Light Wallpaper File
+              Light Wallpaper Selector
             ************************/
             light_wallpaper_select = new Gtk.FileChooserButton (_("Light Background"), Gtk.FileChooserAction.OPEN);
-            light_wallpaper_select.hexpand = true;
+            light_wallpaper_select.width_chars = 15;
 
             // Load file from preferences or set to default
             if (settings.wallpaper_light == "") {
@@ -62,10 +62,10 @@ namespace YinYang.Plugins {
             });
 
             /************************
-              Dark Wallpaper File
+              Dark Wallpaper Selector
             ************************/
             dark_wallpaper_select = new Gtk.FileChooserButton (_("Dark Background"), Gtk.FileChooserAction.OPEN);
-            dark_wallpaper_select.hexpand = true;
+            dark_wallpaper_select.width_chars = 15;
 
             // Load file from preferences or set to default
             if (settings.wallpaper_dark == "") {
@@ -79,6 +79,9 @@ namespace YinYang.Plugins {
                 settings.wallpaper_dark = dark_wallpaper_select.get_uri ();
             });
 
+            /************************
+              Layout Settings
+            ************************/
             light_wallpaper_select.sensitive = checkbox.active;
             dark_wallpaper_select.sensitive = checkbox.active;
 

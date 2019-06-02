@@ -57,6 +57,7 @@ namespace YinYang.Plugins {
             ************************/
             light_vscode_entry = new Gtk.Entry ();
             light_vscode_entry.placeholder_text = _("Light Theme");
+            light_vscode_entry.hexpand = true;
             settings.schema.bind ("vscode-theme-light", light_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 
             /************************
@@ -64,8 +65,12 @@ namespace YinYang.Plugins {
             ************************/
             dark_vscode_entry = new Gtk.Entry ();
             dark_vscode_entry.placeholder_text = _("Dark Theme");
+            dark_vscode_entry.hexpand = true;
             settings.schema.bind ("vscode-theme-dark", dark_vscode_entry, "text", SettingsBindFlags.DEFAULT);
 
+            /************************
+              Layout Settings
+            ************************/
             light_vscode_entry.sensitive = checkbox.active;
             dark_vscode_entry.sensitive = checkbox.active;
 
@@ -74,7 +79,7 @@ namespace YinYang.Plugins {
                 dark_vscode_entry.sensitive = checkbox.active;
             });
 
-            box.pack_start (checkbox);
+            box.pack_start (checkbox, false, false, 0);
             box.pack_start (light_vscode_entry, true, true, 0);
             box.pack_start (dark_vscode_entry, true, true, 0);
 

@@ -83,7 +83,7 @@ namespace YinYang.Views {
             /************************
               Auto-Switch Settings
             ************************/
-            var auto_label = new Gtk.Label ("Enable Automatic Theme Switching");
+            var auto_label = new Gtk.Label (_("Enable Automatic Theme Switching"));
             auto_label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
 
             auto_toggle = new Gtk.Switch ();
@@ -91,8 +91,9 @@ namespace YinYang.Views {
             auto_toggle.valign = Gtk.Align.CENTER;
             auto_toggle.halign = Gtk.Align.CENTER;
             auto_toggle.margin = 5;
+            auto_toggle.set_tooltip_text (_("Places icon in the Wingpanel"));
 
-            var details = new Gtk.Label ("Mode is toggled at sunset and sunrise");
+            var details = new Gtk.Label (_("Mode is toggled at sunset and sunrise"));
             details.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
             attach (app_icon, 0, 0, 1, 1);
