@@ -68,17 +68,19 @@ namespace YinYang.Views {
 
             mode_toggle.mode_changed.connect (() => {
                 if (mode_toggle.selected == 1) {
-                    message ("mode changed to dark");
                     settings.dark_mode = true;
                     Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", true);
                     mode_changed (true);
                 } else {
-                    message ("mode changed to light");
                     settings.dark_mode = false;
                     Gtk.Settings.get_default ().set ("gtk-application-prefer-dark-theme", false);
                     mode_changed (false);
                 }
             });
+
+            if (settings.enable_auto_switch) {
+                mode_toggle.sensitive = false;
+            }
 
             /************************
               Auto-Switch Settings
@@ -96,6 +98,9 @@ namespace YinYang.Views {
             var details = new Gtk.Label (_("Mode is toggled at sunset and sunrise"));
             details.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
 
+            /************************
+              Layout
+            ************************/
             attach (app_icon, 0, 0, 1, 1);
             attach (header_label, 0, 1, 1, 1);
             attach (mode_toggle, 0, 2, 1, 1);

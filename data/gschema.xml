@@ -8,6 +8,12 @@
       <description></description>
     </key> -->
     <!-- TODO: Maybe split certain plugin settings into specific subfolders -->
+    <key name="first-run" type="b">
+      <default>true</default>
+      <summary>Determines if this is the first time the application is launched</summary>
+      <description>On first run, the application should create an autostart entry.</description>
+    </key>
+
     <key name="dark-mode" type="b">
       <default>false</default>
       <summary>Sets the preferred application theme settings</summary>

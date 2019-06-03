@@ -8,6 +8,7 @@ Build-Depends: debhelper (>= 10.5.1),
                libunity-dev,
                libgranite-dev,
                libjson-glib-dev,
+               libwingpanel-2.0-dev,
                meson,
                valac (>= 0.28.0)
 Standards-Version: 4.1.1

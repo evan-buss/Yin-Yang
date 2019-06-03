@@ -62,7 +62,6 @@ namespace YinYang {
                 debug ("Nightlight status changed!");
                 set_themes(is_dark);              // Load plugin theme settings
                 main_view.mode_toggle.set_active (is_dark ? 1 : 0);
-                //  main_view.mode_toggle.mode_changed (null);
             });
 
             /************************
@@ -76,6 +75,11 @@ namespace YinYang {
             //  Only show the wingpanel indicator auto switch enabled
             main_view.auto_toggle.notify["active"].connect (() => {
                 dbusserver.indicator_state (settings.enable_auto_switch);
+                //  Disable the theme switch button when auto enabled
+                main_view.mode_toggle.sensitive = !main_view.auto_toggle.active;
+                //  Set the theme to correspond with whether the nightlight is active
+                set_themes (manager.active);
+                main_view.mode_toggle.set_active (manager.active ? 1 : 0);
             });
 
             //  Toggle between views using "Ctrl+S"

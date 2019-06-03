@@ -47,6 +47,16 @@ namespace YinYang {
 
         protected override void activate () {
             /************************
+              First Run
+            ************************/
+            var settings = Services.Settings.get_default ();
+            if (settings.first_run) {
+                message ("installing autostart");
+                install_autostart ();
+                settings.first_run = false;
+            }
+
+            /************************
                 Construct Window
             ************************/
             window = new YinYangWindow (this);
@@ -58,5 +68,36 @@ namespace YinYang {
             app = new YinYangApp ();
             return app.run (args);
         }
+
+        // Create autostart desktop file entry in ~/.config/autostart on first run
+        private void install_autostart () {
+            var desktop_file_name = application_id + ".desktop";
+            var desktop_file_path = new DesktopAppInfo (desktop_file_name).filename;
+            var desktop_file = File.new_for_path (desktop_file_path);
+            var dest_path = Path.build_path (
+                Path.DIR_SEPARATOR_S,
+                Environment.get_user_config_dir (),
+                "autostart",
+                desktop_file_name
+            );
+            var dest_file = File.new_for_path (dest_path);
+            try {
+                desktop_file.copy (dest_file, FileCopyFlags.OVERWRITE);
+                stdout.printf ("\n📃️ Copied desktop file at: %s", dest_path);
+            } catch (Error e) {
+                warning ("Error making copy of desktop file for autostart: %s", e.message);
+            }
+
+            var keyfile = new KeyFile ();
+            try {
+                keyfile.load_from_file (dest_path, KeyFileFlags.NONE);
+                keyfile.set_boolean ("Desktop Entry", "X-GNOME-Autostart-enabled", true);
+                keyfile.set_string ("Desktop Entry", "Exec", application_id + " --headless");
+                keyfile.save_to_file (dest_path);
+            } catch (Error e) {
+                warning ("Error enabling autostart: %s", e.message);
+            }
+        }
+
     }
 }

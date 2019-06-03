@@ -35,6 +35,8 @@ namespace YinYang.Services {
 
         public bool enable_dark_desktop { get; set; }
 
+        public bool first_run { get; set; }
+
         public bool enable_gtk_theme { get; set; }
         public string gtk_theme_light { get; set; }
         public string gtk_theme_dark { get; set; }
