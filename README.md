@@ -28,9 +28,10 @@
 - [X] Pantheon Code Editor Theme Switching
 - [X] Firefox Theme Switching
 - [X] Wallpaper Background Switching
-- [ ] Automatic theme switching at a specific time
-- [ ] Wingpanel Integration
+- [X] Automatic theme switching when nightlight is enabled
+- [X] Wingpanel Integration
 - [ ] Notifications
+- [ ] Custom Icon (Desktop and Wingpanel)
 
 ## Future Integrations
 
