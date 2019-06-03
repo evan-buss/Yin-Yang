@@ -11,10 +11,9 @@ Build-Depends: debhelper (>= 10.5.1),
                libwingpanel-2.0-dev,
                meson,
                valac (>= 0.28.0)
-Standards-Version: 4.1.1
 
+Standards-Version: 4.1.1
 Package: com.github.evan-buss.yin-yang
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Yin and Yang
- This is a an application to systematically toggle many different application's themes together.
+Description: Easily switch your Elementary OS application themes.

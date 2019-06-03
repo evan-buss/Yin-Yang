@@ -1,45 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
+  <!-- TODO: Maybe split certain plugin settings into specific subfolders -->
   <schema path="/com/github/evan-buss/yin-yang/" id="com.github.evan-buss.yin-yang.settings">
 
-   <!-- <key name="prefer-dark-desktop" type="b">
+   <!--
+    <key name="" type="">
       <default></default>
       <summary></summary>
       <description></description>
-    </key> -->
-    <!-- TODO: Maybe split certain plugin settings into specific subfolders -->
+    </key>
+    -->
+
     <key name="first-run" type="b">
       <default>true</default>
-      <summary>Determines if this is the first time the application is launched</summary>
-      <description>On first run, the application should create an autostart entry.</description>
+      <summary>True if first time application has been run.</summary>
+      <description>First run creates an autostart entry</description>
     </key>
 
     <key name="dark-mode" type="b">
       <default>false</default>
-      <summary>Sets the preferred application theme settings</summary>
-      <description>true means that every application will use the dark theme.
-      	false means that every application will use the light theme
-      </description>
+      <summary>User's preferred theme setting</summary>
+      <description>True = Use dark mode. False = Use light mode.</description>
     </key>
 
     <key name="enable-auto-switch" type="b">
       <default>false</default>
-      <summary>Enables automatically switching from dark to light modes at sunrise and sunset.</summary>
-      <description>Enabling this makes it so that closing the application just hides the window.
-      The indicator will appear in the wingpanel and show the current mode status</description>
+      <summary>Automatically switch between light and dark mode.</summary>
+      <description>Follows nightlight times. When enabled, wingpanel indicator will be displayed</description>
     </key>
-
 
     <key name="enable-dark-desktop" type="b">
       <default>false</default>
-      <summary>Prefer dark application themes. Sets the global dark setting</summary>
-      <description>Prefer dark application themes. Sets the global dark </description>
+      <summary>Enables usage of "Prefer dark" Gtk setting for applications.</summary>
+      <description>Some apps that use this flag must be restarted to change themes.</description>
     </key>
 
+    <!-- GTK Plugin Settings -->
     <key name="enable-gtk-theme" type="b">
       <default>false</default>
-      <summary>Whether or not to switch the GTK theme between dark and light</summary>
-      <description>If enabled, the GTK theme will be switched when toggled between light and dark mode</description>
+      <summary>Switch GTK theme on mode switch.</summary>
+      <description>Switch GTK theme on mode switch.</description>
     </key>
     <key name="gtk-theme-light" type="s">
       <default>''</default>
@@ -52,11 +52,11 @@
       <description>User's preferred GTK dark theme</description>
     </key>
 
-
+    <!-- Visual Studio Code Plugin Settings -->
     <key name="enable-vscode-theme" type="b">
       <default>false</default>
-      <summary>Whether or not to switch the vscode theme between dark and light</summary>
-      <description>If enabled, the VSCode editor theme will be switched when toggled between light and dark mode</description>
+      <summary>Switch VSCode theme on mode switch</summary>
+      <description>Switch VSCode theme on mode switch</description>
     </key>
     <key name="vscode-theme-light" type="s">
       <default>''</default>
@@ -69,58 +69,62 @@
       <description>User's preferred Visual Studio Code dark theme</description>
     </key>
 
+    <!-- Firefox Plugin Settings -->
     <key name="enable-firefox-theme" type="b">
       <default>false</default>
-      <summary>Whether or not to switch the Firefox theme between dark and light</summary>
-      <description>If enabled, the Firefox theme will be switched when toggled between light and dark mode</description>
+      <summary>Switch Firefox theme on mode switch</summary>
+      <description>Switch Firefox theme on mode switch</description>
     </key>
 
+    <!-- Code Plugin Settings -->
     <key name="enable-code-theme" type="b">
       <default>false</default>
-      <summary>Whether or not to switch the Code (elementary text editor) theme between dark and light</summary>
-      <description>If enabled, the Code theme will be switched when toggled between light and dark mode</description>
+      <summary>Switch Code theme on mode switch</summary>
+      <description>Switch Firefox theme on mode switch</description>
     </key>
     <key name="code-theme-light" type="i">
       <default>-1</default>
-      <summary>User's preferred code light theme ComboBox selection.</summary>
-      <description>User's preferred light theme</description>
+      <summary>User's preferred code light theme.</summary>
+      <description>Index of choice in ComboBox selection</description>
     </key>
     <key name="code-theme-dark" type="i">
       <default>-1</default>
-      <summary>User's preferred Terminakl dark theme ComboBox selection</summary>
-      <description>User's preferred code dark theme</description>
+      <summary>User's preferred code dark theme.</summary>
+      <description>Index of choice in ComboBox selection</description>
     </key>
 
+    <!-- Terminal Plugin Settings -->
     <key name="enable-terminal-theme" type="b">
       <default>false</default>
-      <summary>Whether or not to switch the Terminal theme between dark and light</summary>
-      <description>If enabled, the Terminal theme will be switched when toggled between light and dark mode</description>
+      <summary>Switch Terminal theme on mode switch</summary>
+      <description>Switch Terminal theme on mode switch</description>
     </key>
     <key name="terminal-theme-light" type="i">
       <default>-1</default>
-      <summary>User's preferred Terminal light theme ComboBox selection.</summary>
-      <description>User's preferred light theme</description>
+      <summary>User's preferred Terminal light theme</summary>
+      <description>Index of choice in ComboBox selection</description>
     </key>
     <key name="terminal-theme-dark" type="i">
       <default>-1</default>
-      <summary>User's preferred Terminakl dark theme ComboBox selection</summary>
-      <description>User's preferred Terminal dark theme</description>
+      <summary>User's preferred Terminal dark theme</summary>
+      <description>Index of choice in ComboBox selection</description>
     </key>
 
+    <!-- Wallpaper Plugin Settings -->
     <key name="enable-wallpaper-theme" type="b">
       <default>false</default>
-      <summary>Whether or not to switch the wallpaper theme between dark and light</summary>
-      <description>If enabled, the wallpaper theme will be switched when toggled between light and dark mode</description>
+      <summary>Switch wallpaper on mode switch</summary>
+      <description>Switch wallpaper on mode switch</description>
     </key>
     <key name="wallpaper-light" type="s">
       <default>''</default>
       <summary>User's preferred light wallpaper.</summary>
-      <description>User's preferred wallpaper URI</description>
+      <description>Wallpaper file URI</description>
     </key>
     <key name="wallpaper-dark" type="s">
       <default>''</default>
       <summary>User's preferred dark wallpaper.</summary>
-      <description>User's preferred wallpaper URI</description>
+      <description>Wallpaper file URI</description>
     </key>
   </schema>
 </schemalist>
