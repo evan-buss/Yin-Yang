@@ -25,11 +25,12 @@ namespace YinYang {
 
         private static YinYangApp app;
         private YinYangWindow window = null;
+        private bool headless = false;
 
         public YinYangApp () {
             Object (
                 application_id: "com.github.evan-buss.yin-yang",
-                flags: ApplicationFlags.FLAGS_NONE
+                flags: ApplicationFlags.HANDLES_COMMAND_LINE
             );
         }
 
@@ -59,13 +60,64 @@ namespace YinYang {
             /************************
                 Construct Window
             ************************/
-            window = new YinYangWindow (this);
-            window.set_application (this);
-            window.show_all ();
+            if (window == null) {
+                window = new YinYangWindow (this);
+                window.set_application (this);
+
+                if (!headless) {
+                    window.show_all ();
+                }
+            }
+
+            //  Present window if already running
+            if (window != null && !headless) {
+                window.show_all ();
+                window.present ();
+            }
+        }
+
+        //  This only runs when there are command line args
+        public override int command_line (ApplicationCommandLine command_line) {
+            stdout.printf ("Received command line args");
+            var headless_mode = false;
+
+            //  "--headless" option
+            OptionEntry[] options = new OptionEntry[1];
+            options[0] = {
+                "headless", 0, 0, OptionArg.NONE,
+                ref headless_mode, "Run without window", null
+            };
+
+            string[] args = command_line.get_arguments ();
+            string[] _args = new string[args.length];
+            for (int i = 0; i < args.length; i++) {
+                _args[i] = args[i];
+            }
+
+            try {
+                var ctx = new OptionContext ();
+                ctx.set_help_enabled (true);
+                ctx.add_main_entries (options, null);
+                unowned string[] tmp = _args;
+                ctx.parse (ref tmp);
+            } catch (OptionError e) {
+                command_line.print ("error: %s\n", e.message);
+            }
+
+            headless = headless_mode;
+
+            hold ();
+            activate ();
+            return 0;
         }
 
         public static int main (string[] args) {
             app = new YinYangApp ();
+
+            if (args.length > 1 && args[1] == "headless") {
+                app.headless = true;
+            }
+
             return app.run (args);
         }
 
@@ -83,7 +135,6 @@ namespace YinYang {
             var dest_file = File.new_for_path (dest_path);
             try {
                 desktop_file.copy (dest_file, FileCopyFlags.OVERWRITE);
-                stdout.printf ("\n📃️ Copied desktop file at: %s", dest_path);
             } catch (Error e) {
                 warning ("Error making copy of desktop file for autostart: %s", e.message);
             }
@@ -98,6 +149,5 @@ namespace YinYang {
                 warning ("Error enabling autostart: %s", e.message);
             }
         }
-
     }
 }

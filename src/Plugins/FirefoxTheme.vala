@@ -42,12 +42,14 @@ namespace YinYang.Plugins {
             "user_pref(\"lightweightThemes.selectedThemeID\", \"default-theme@mozilla.org\");";
 
         private Gtk.CheckButton checkbox;
-        private string firefox_dir = Environment.get_home_dir () + "/.mozilla/firefox/";
+        public string sep = Path.DIR_SEPARATOR_S;
+        private string firefox_dir;
 
         public FirefoxTheme () {
         }
 
         construct {
+            firefox_dir = Environment.get_home_dir () + sep + ".mozilla" + sep + "firefox" + sep;
             /************************
               Label
             ************************/
@@ -117,7 +119,7 @@ namespace YinYang.Plugins {
                     if (FileUtils.test (path, FileTest.IS_DIR)) {
                         if (path.split (".", 0)[2] == "default") {
                             // Reference user.js file
-                            var file = File.new_for_path (path + "/user.js");
+                            var file = File.new_for_path (path + sep + "user.js");
 
                             // delete if file already exists
                             if (file.query_exists ()) {
