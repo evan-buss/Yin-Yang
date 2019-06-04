@@ -30,6 +30,9 @@ namespace YinYang.Plugins {
         private Settings desktop_settings;
 
         public Wallpaper () {
+            Object (
+                column_spacing: 8
+            );
             desktop_settings = new Settings ("org.gnome.desktop.background");
         }
 
@@ -38,7 +41,11 @@ namespace YinYang.Plugins {
             label.get_style_context ().add_class (Granite.STYLE_CLASS_H4_LABEL);
             label.halign = Gtk.Align.START;
 
-            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+            var outer_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+            var inner_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
+            inner_box.halign = Gtk.Align.CENTER;
+            inner_box.hexpand = true;
+            outer_box.hexpand = true;
 
             checkbox = new Gtk.CheckButton ();
             settings.schema.bind ("enable-wallpaper-theme", checkbox, "active", SettingsBindFlags.DEFAULT);
@@ -47,7 +54,8 @@ namespace YinYang.Plugins {
               Light Wallpaper Selector
             ************************/
             light_wallpaper_select = new Gtk.FileChooserButton (_("Light Background"), Gtk.FileChooserAction.OPEN);
-            light_wallpaper_select.width_chars = 15;
+            light_wallpaper_select.width_chars = 13;
+            light_wallpaper_select.hexpand = true;
 
             // Load file from preferences or set to default
             if (settings.wallpaper_light == "") {
@@ -65,7 +73,8 @@ namespace YinYang.Plugins {
               Dark Wallpaper Selector
             ************************/
             dark_wallpaper_select = new Gtk.FileChooserButton (_("Dark Background"), Gtk.FileChooserAction.OPEN);
-            dark_wallpaper_select.width_chars = 15;
+            dark_wallpaper_select.width_chars = 13;
+            dark_wallpaper_select.hexpand = true;
 
             // Load file from preferences or set to default
             if (settings.wallpaper_dark == "") {
@@ -80,6 +89,17 @@ namespace YinYang.Plugins {
             });
 
             /************************
+              File Chooser Filter
+            ************************/
+            var filter = new Gtk.FileFilter ();
+            filter.add_pattern ("*.png");
+            filter.add_pattern ("*.jpg");
+            filter.add_pattern ("*.jpeg");
+
+            light_wallpaper_select.add_filter (filter);
+            dark_wallpaper_select.add_filter (filter);
+
+            /************************
               Layout Settings
             ************************/
             light_wallpaper_select.sensitive = checkbox.active;
@@ -90,12 +110,14 @@ namespace YinYang.Plugins {
                 dark_wallpaper_select.sensitive = checkbox.active;
             });
 
-            box.pack_start (checkbox, false, false, 0);
-            box.pack_start (light_wallpaper_select, true, true, 0);
-            box.pack_start (dark_wallpaper_select, true, true, 0);
+            inner_box.add (light_wallpaper_select);
+            inner_box.add (dark_wallpaper_select);
+
+            outer_box.pack_start (checkbox, false, false, 0);
+            outer_box.pack_start (inner_box, true, true, 0);
 
             attach (label, 0, 0, 1, 1);
-            attach (box, 0, 1, 1, 1);
+            attach (outer_box, 0, 1, 1, 1);
         }
 
         public override void set_light () {
