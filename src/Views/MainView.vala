@@ -22,7 +22,7 @@
 
 namespace YinYang.Views {
 
-    public class MainView : Gtk.Grid {
+    public class MainView : Gtk.Box {
 
         private Services.Settings settings;
         public Gtk.Switch auto_toggle;
@@ -33,6 +33,7 @@ namespace YinYang.Views {
         public MainView () {
             Object (
                 halign: Gtk.Align.CENTER,
+                orientation: Gtk.Orientation.VERTICAL,
                 margin: 8
             );
         }
@@ -101,12 +102,12 @@ namespace YinYang.Views {
             /************************
               Layout
             ************************/
-            attach (app_icon, 0, 0, 1, 1);
-            attach (header_label, 0, 1, 1, 1);
-            attach (mode_toggle, 0, 2, 1, 1);
-            attach (auto_label, 0, 4, 1, 1);
-            attach (auto_toggle, 0, 5, 1, 1);
-            attach (details, 0, 6, 1, 1);
+            add (app_icon);
+            add (header_label);
+            add (mode_toggle);
+            add (auto_label);
+            add (auto_toggle);
+            add (details);
         }
     }
 }

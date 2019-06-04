@@ -1,12 +1,14 @@
 namespace YinYang.Views {
 
-    public class SettingsView : Gtk.Grid {
+    public class SettingsView : Gtk.Box {
 
         public Services.Settings settings;
         public Gee.ArrayList<Plugins.Plugin> plugin_list;
 
         public SettingsView () {
             Object (
+                hexpand: false,
+                orientation: Gtk.Orientation.VERTICAL,
                 margin: 8
             );
 
@@ -37,7 +39,7 @@ namespace YinYang.Views {
               Attach To Grid
             ************************/
             for (int i = 0; i < plugin_list.size; i++) {
-                attach (plugin_list.get (i), 0, i, 1, 1);
+                add (plugin_list.get (i));
             }
         }
     }
