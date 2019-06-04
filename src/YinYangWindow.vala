@@ -72,12 +72,12 @@ namespace YinYang {
                 set_themes (is_dark);
             });
 
-            //  Only show the wingpanel indicator auto switch enabled
+            //  Only show the wingpanel indicator if auto switch enabled
             main_view.auto_toggle.notify["active"].connect (() => {
                 dbusserver.indicator_state (settings.enable_auto_switch);
-                //  Disable the theme switch button when auto enabled
+                //  Disable manual theme switching
                 main_view.mode_toggle.sensitive = !main_view.auto_toggle.active;
-                //  Set the theme to correspond with whether the nightlight is active
+                //  Match theme with nightlight status
                 set_themes (manager.active);
                 main_view.mode_toggle.set_active (manager.active ? 1 : 0);
             });
@@ -104,6 +104,17 @@ namespace YinYang {
                 }
                 return true;
             });
+
+            /************************
+             Startup Actions
+            ************************/
+            //  Need to manually set theme on startup if auto-switch enabled.
+            //  Other methods only listen for the switch, but if the program isn't
+            //  running when night-mode kicks on or off nothing will happen.
+            if (main_view.auto_toggle.active) {
+                set_themes (manager.active);
+                main_view.mode_toggle.set_active (manager.active ? 1 : 0);
+            }
         }
 
         construct {
