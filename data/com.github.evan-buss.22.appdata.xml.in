@@ -1,43 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2019 Your Name <you@email.com> -->
 <component type="desktop">
-  <id>com.github.evan-buss.yin-yang</id>
+  <id>com.github.evan-buss.22</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>AGPL-3.0</project_license>
-  <name>Yin and Yang</name>
-  <summary>Automatically switch between light and dark application themes</summary>
-  <developer_name>Evan Buss</developer_name>
+  <name></name>
+  <summary></summary>
+  <developer_name></developer_name>
   <provides>
-      <binary>com.github.evan-buss.yin-yang</binary>
+      <binary>com.github.evan-buss.22</binary>
   </provides>
   <screenshots>
       <screenshot type="default">
-          <image>https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_1.png</image>
+          <image></image>
       </screenshot>
       <screenshot>
-          <image>https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_2.png</image>
+          <image></image>
       </screenshot>
       <screenshot>
-          <image>https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/data/img/screenshot_3.png</image>
+          <image></image>
       </screenshot>
   </screenshots>
   <description>
-    <p>Toggle between light and dark themes for a variety of different applications at the click of a button</p>
-    <p>Yin and Yang allows you to uniformly change theme for a growing list of desktop applications on command.</p>
-    <p>Main features:</p>
+    <p>App Description Here</p>
+    <p>Features</p>
     <ul>
-      <li>Toggle between light and dark mode</li>
-      <li>Use Ctrl + Q or Escape to exit</li>
-    </ul>
-    <p>Current Yin-Yang Integrations</p>
-    <ul>
-      <li>GTK Theme</li>
-      <li>Desktop "Prefer Dark"</li>
-      <li>Visual Studio Code</li>
-      <li>Terminal</li>
-      <li>Code</li>
-      <li>Firefox</li>
-      <li>Wallpaper</li>
+      <li>List</li>
+      <li>Features</li>
+      <li>Here</li>
     </ul>
   </description>
   <content_rating type="oars-1.1">
@@ -69,10 +59,10 @@
     <content_attribute id="money-purchasing">none</content_attribute>
     <content_attribute id="money-gambling">none</content_attribute>
   </content_rating>
-  <url type="homepage">https://github.com/evan-buss/yin-yang</url>
-  <url type="bugtracker">https://github.com/evan-buss/yin-yang/issues</url>
-  <url type="help">https://github.com/evan-buss/yin-yang/issues</url>
-  <update_contact>evan.buss28@gmail.com</update_contact>
+  <url type="homepage">https://github.com/evan-buss/22</url>
+  <url type="bugtracker">https://github.com/evan-buss/22</url>
+  <url type="help">https://github.com/evan-buss/22</url>
+  <update_contact></update_contact>
   <custom>
      <value key="x-appcenter-color-primary">#231F20</value>
      <value key="x-appcenter-color-primary-text">rgb(255, 255, 255)</value>

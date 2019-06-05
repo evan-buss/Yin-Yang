@@ -1,9 +1,1 @@
-*~
-__pycache__
-build-test*
-build-ui-*
-.vscode
-src/build.py
-setup.py
-*~
 build/

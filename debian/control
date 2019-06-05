@@ -1,19 +1,15 @@
-Source: com.github.evan-buss.yin-yang
+Source: com.github.evan-buss.22
 Section: x11
 Priority: extra
 Maintainer: Evan Buss <evan.buss28@gmail.com>
 Build-Depends: debhelper (>= 10.5.1),
                gettext,
                libgtk-3-dev (>= 3.10),
-               libunity-dev,
                libgranite-dev,
-               libjson-glib-dev,
-               libwingpanel-2.0-dev,
                meson,
                valac (>= 0.28.0)
-
 Standards-Version: 4.1.1
-Package: com.github.evan-buss.yin-yang
+Package: com.github.evan-buss.22
 Architecture: any
 Depends: ${misc:Depends}, ${shlibs:Depends}
-Description: Easily switch your Elementary OS application themes.
+Description: A lightweight ebook manager.

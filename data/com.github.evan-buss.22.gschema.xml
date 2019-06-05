@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+
+    <schema id="com.github.evan-buss.22" path="/com/github/evan-buss/22/">
+    <key name="window-x" type="i">
+      <default>-1</default>
+      <summary>Most recent x position of 22</summary>
+      <description>Most recent x position of 22</description>
+    </key>
+
+    <key name="window-y" type="i">
+      <default>-1</default>
+      <summary>Most recent y position of 22</summary>
+      <description>Most recent y position of 22</description>
+    </key>
+
+   <!--
+    <key name="" type="">
+      <default></default>
+      <summary></summary>
+      <description></description>
+    </key>
+    -->
+	</schema>
+
+</schemalist>

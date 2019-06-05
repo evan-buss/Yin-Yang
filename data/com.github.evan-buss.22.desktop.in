@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Template App
+GenericName=Template
+Comment=
+Categories=Utility;Settings;
+Exec=com.github.evan-buss.22
+Icon=com.github.evan-buss.22
+Terminal=false
+Type=Application
+Keywords=app;template;vala;
+X-GNOME-UsesNotifications=true
