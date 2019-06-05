@@ -1,9 +1,9 @@
 Format: http://dep.debian.net/deps/dep5
-Upstream-Name: 22-packaging
-Source: https://github.com/evan-buss/22
+Upstream-Name: yin-yang-packaging
+Source: https://github.com/evan-buss/yin-yang
 
 Files: src/* data/* debian/*
-Copyright: 2019 Evan Buss <evan.buss28@gmail.com>
+Copyright: 2019 Your Name <evan.bus28@gmail.com>
 License: GPL-3.0+
 
 License: GPL-3.0+

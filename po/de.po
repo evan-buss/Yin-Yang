@@ -1,14 +1,14 @@
-# German translations for com.github.name.app package.
-# Copyright (C) 2019 THE com.github.name.app'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.github.name.app package.
+# German translations for com.github.evan-buss.yin-yang package.
+# Copyright (C) 2019 THE com.github.evan-buss.yin-yang'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.evan-buss.yin-yang package.
 # Automatically generated, 2019.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.name.app\n"
+"Project-Id-Version: com.github.evan-buss.yin-yang\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-05 14:44-0400\n"
-"PO-Revision-Date: 2019-06-04 23:02-0400\n"
+"POT-Creation-Date: 2019-05-31 00:30-0400\n"
+"PO-Revision-Date: 2019-05-21 22:10-0400\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: de\n"
@@ -17,43 +17,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: src/Application.vala:12
-msgid "Hello World"
+#: src/YinYangWindow.vala:85
+msgid "Yin and Yang"
 msgstr ""
 
-#: data/com.github.evan-buss.22.desktop.in:3
-msgid "Template App"
+#: src/YinYangWindow.vala:93
+msgid "Edit Settings (Ctrl+S)"
 msgstr ""
 
-#: data/com.github.evan-buss.22.desktop.in:4
-msgid "Template"
+#: src/Views/MainView.vala:39
+msgid "Select Mode"
 msgstr ""
 
-#: data/com.github.evan-buss.22.desktop.in:6
-msgid "Categories=Utility;Settings;"
+#: src/Views/MainView.vala:43
+msgid "Light"
 msgstr ""
 
-#: data/com.github.evan-buss.22.desktop.in:8
-msgid "com.github.name.app"
+#: src/Views/MainView.vala:44
+msgid "Dark"
 msgstr ""
 
-#: data/com.github.evan-buss.22.desktop.in:11
-msgid "app;template;vala;"
+#: src/Views/SettingsView.vala:21
+msgid "Theme Settings"
 msgstr ""
 
-#: data/com.github.evan-buss.22.appdata.xml.in:25
-msgid "App Description Here"
+#: src/Plugins/CodeTheme.vala:31 src/Plugins/TerminalTheme.vala:49
+msgid "Classic"
 msgstr ""
 
-#: data/com.github.evan-buss.22.appdata.xml.in:26
-#: data/com.github.evan-buss.22.appdata.xml.in:29
-msgid "Features"
+#: src/Plugins/CodeTheme.vala:32 src/Plugins/TerminalTheme.vala:55
+msgid "Solarized Light"
 msgstr ""
 
-#: data/com.github.evan-buss.22.appdata.xml.in:28
-msgid "List"
+#: src/Plugins/CodeTheme.vala:33 src/Plugins/TerminalTheme.vala:61
+msgid "Solarized Dark"
 msgstr ""
 
-#: data/com.github.evan-buss.22.appdata.xml.in:30
-msgid "Here"
+#: src/Plugins/CodeTheme.vala:41
+msgid "Code"
+msgstr ""
+
+#: src/Plugins/DesktopTheme.vala:43
+msgid "Desktop Color Mode"
+msgstr ""
+
+#: src/Plugins/DesktopTheme.vala:46
+msgid "Toggle Prefer Dark Setting"
+msgstr ""
+
+#: src/Plugins/FirefoxTheme.vala:51
+msgid "Firefox (Default Only)"
+msgstr ""
+
+#: src/Plugins/FirefoxTheme.vala:62 src/Plugins/GtkTheme.vala:50
+#: src/Plugins/VSCodeTheme.vala:59
+msgid "Light Theme"
+msgstr ""
+
+#: src/Plugins/FirefoxTheme.vala:66 src/Plugins/GtkTheme.vala:54
+#: src/Plugins/VSCodeTheme.vala:66
+msgid "Dark Theme"
+msgstr ""
+
+#: src/Plugins/GtkTheme.vala:40
+msgid "GTK Theme"
+msgstr ""
+
+#: src/Plugins/TerminalTheme.vala:73
+msgid "Terminal"
+msgstr ""
+
+#: src/Plugins/VSCodeTheme.vala:46
+msgid "Visual Studio Code"
+msgstr ""
+
+#: src/Plugins/Wallpaper.vala:37
+msgid "Background"
+msgstr ""
+
+#: src/Plugins/Wallpaper.vala:49
+msgid "Light Background"
+msgstr ""
+
+#: src/Plugins/Wallpaper.vala:67
+msgid "Dark Background"
 msgstr ""
