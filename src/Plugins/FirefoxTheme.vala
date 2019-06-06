@@ -80,13 +80,15 @@ namespace YinYang.Plugins {
             /************************
               Layout Settings
             ************************/
-            light_firefox_entry.sensitive = checkbox.active;
-            dark_firefox_entry.sensitive = checkbox.active;
+            light_firefox_entry.sensitive = false;
+            dark_firefox_entry.sensitive = false;
+            //  light_firefox_entry.sensitive = checkbox.active;
+            //  dark_firefox_entry.sensitive = checkbox.active;
 
-            checkbox.toggled.connect (() => {
-                light_firefox_entry.sensitive = checkbox.active;
-                dark_firefox_entry.sensitive = checkbox.active;
-            });
+            //  checkbox.toggled.connect (() => {
+            //      light_firefox_entry.sensitive = checkbox.active;
+            //      dark_firefox_entry.sensitive = checkbox.active;
+            //  });
 
             var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 10);
 

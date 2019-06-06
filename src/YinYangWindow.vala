@@ -167,8 +167,6 @@ namespace YinYang {
             stack.add_named (main_view, "main");
             stack.add_named (settings_view, "settings");
 
-            var settings_style_context = settings_button.get_style_context ();
-
             settings_button.clicked.connect (() => {
                 toggle_view ();
             });
