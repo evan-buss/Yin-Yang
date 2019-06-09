@@ -22,7 +22,7 @@
 
 public class YinYang.Indicator : Wingpanel.Indicator {
 
-    private Wingpanel.Widgets.OverlayIcon display_widget;
+    private Gtk.Image display_widget;
     private Widgets.PopoverWidget popover_widget;
     private DBusClient dbusclient;
     private YinYang.Services.Settings settings;
@@ -43,7 +43,29 @@ public class YinYang.Indicator : Wingpanel.Indicator {
         /************************
           Create Indicator Widgets
         ************************/
-        display_widget = new Wingpanel.Widgets.OverlayIcon ("internet-web-browser");
+
+        var icon_theme = new Gtk.IconTheme ();
+        icon_theme.add_resource_path ("/com/github/evan-buss/yin-yang/images");
+
+        //  I need to manually set the symbolic foreground color ??????
+        //  //  pixbuf -> iconInfo -> pixbuf -> image
+        //  var symb_pixbuf = new Gtk.Pixbuf.from_resource ("/com/github/evan-buss/yin-yang/images/com.github.evan-buss.yin-yang.symbolic.svg");
+        //  var icon_info = new Gtk.IconInfo.for_pixbuf (icon_theme, symb_pixbuf);
+
+        //  var temp_pixbuf = icon_info.load_symbolic
+
+
+        //  display_widget = new Wingpanel.Widgets.OverlayIcon ("internet-web-browser-symbolic");
+
+
+        //  foreach (var icon in icon_theme.list_icons (null)) {
+        //      message (icon);
+        //  }
+
+
+        display_widget = new Gtk.Image.from_resource ("/com/github/evan-buss/yin-yang/images/com.github.evan-buss.yin-yang.yin-yang-symbolic.svg");
+
+        //  display_widget = new Gtk.Image.from_icon_name ("com.github.evan-buss.yin-yang.yin-yang-symbolic.svg", Gtk.IconSize.MENU);
         popover_widget = new Widgets.PopoverWidget ();
 
         /************************

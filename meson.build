@@ -10,7 +10,7 @@ add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format (meson.project_name()), la
 # Compile GResources
 gnome = import('gnome')
 gresource = gnome.compile_resources(
-    'as-resources', 'data/gresource.xml',
+    'as-resources', 'data/com.github.evan-buss.yin-yang.gresource.xml',
     source_dir: 'data',
     c_name: 'as'
 )

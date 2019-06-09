@@ -1,10 +1,10 @@
 [Desktop Entry]
 Name=Yin and Yang
 GenericName=Theme Switcher
-Comment=Application theme switcher
+Comment=Elementary application theme switcher
 Categories=Utility;Settings;
 Exec=com.github.evan-buss.yin-yang
-Icon=text-x-copying
+Icon=com.github.evan-buss.yin-yang
 Terminal=false
 Type=Application
 Keywords=Yin;Yang;YinYang;theme;switcher;

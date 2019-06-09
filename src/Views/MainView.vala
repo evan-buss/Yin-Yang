@@ -48,7 +48,9 @@ namespace YinYang.Views {
             Gtk.Image app_icon = null;
             try {
                 app_icon_pix_buf =
-                  new Gdk.Pixbuf.from_resource_at_scale ("/com/github/evan-buss/yin-yang/img/logo.svg", 150, -1, true);
+                  new Gdk.Pixbuf.from_resource_at_scale (
+                      "/com/github/evan-buss/yin-yang/images/com.github.evan-buss.yin-yang.logo.svg",
+                       150, -1, true);
                 app_icon = new Gtk.Image.from_pixbuf (app_icon_pix_buf);
                 app_icon.margin = 20;
             } catch (Error e) {

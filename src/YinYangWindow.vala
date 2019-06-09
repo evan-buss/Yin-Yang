@@ -36,7 +36,8 @@ namespace YinYang {
                 resizable: false,
                 default_width: 200,
                 default_height: 400,
-                window_position: Gtk.WindowPosition.CENTER
+                window_position: Gtk.WindowPosition.CENTER,
+                icon_name: "com.github.evan-buss.yin-yang"
             );
 
             /************************
