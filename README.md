@@ -30,8 +30,37 @@
 - [X] Wallpaper Background Switching
 - [X] Automatic theme switching when nightlight is enabled
 - [X] Wingpanel Integration
+- [X] Custom Icon (Desktop and Wingpanel)
 - [ ] Notifications
-- [ ] Custom Icon (Desktop and Wingpanel)
+
+## Building, Testing, and Installation
+
+You'll need the following dependencies:
+* meson
+* valac
+* libgtk-3-dev (>= 3.10)
+* libunity-dev
+* libgranite-dev
+* libjson-glib-dev
+* libwingpanel-2.0-dev
+* libunity-dev
+
+Run `meson build` to configure the build environment. Change to the build directory and run `ninja` to build
+
+    meson build --prefix=/usr
+    cd build
+    ninja
+
+To test without installing, use `ninja`, then execute with `./com.github.evan-buss.yin-yang`
+
+    ninja
+    ./com.github.evan-buss.yin-yang
+
+To install, use `ninja install`, then execute with `com.github.evan-buss.yin-yang`
+
+    sudo ninja install
+    com.github.evan-buss.yin-yang
+
 
 ## Future Integrations
 
@@ -39,4 +68,4 @@ If you have any requests or suggestions for application theme switching integrat
 
 ## Credit
 
-Thanks to [Yin-Yang KDE](https://github.com/daehruoydeef/Yin-Yang) for the inspiration and original design.
+Thanks to [Yin-Yang](https://github.com/daehruoydeef/Yin-Yang) for the inspiration and original design.
