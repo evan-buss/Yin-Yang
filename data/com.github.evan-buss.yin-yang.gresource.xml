@@ -5,7 +5,7 @@
     </gresource>
 
     <gresource prefix="/com/github/evan-buss/yin-yang/images">
-      <file alias="com.github.evan-buss.yin-yang.yin-yang-symbolic.svg" compressed="true" preprocess="xml-stripblanks">images/com.github.evan-buss.yin-yang.symbolic.svg</file>
+      <file alias="com.github.evan-buss.yin-yang-symbolic.svg" compressed="true" preprocess="xml-stripblanks">images/com.github.evan-buss.yin-yang-symbolic.svg</file>
 
       <file alias="com.github.evan-buss.yin-yang.logo.svg" compressed="true" preprocess="xml-stripblanks">images/com.github.evan-buss.yin-yang.logo.svg</file>
 

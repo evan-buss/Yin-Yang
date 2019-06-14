@@ -54,7 +54,7 @@ namespace YinYang.Plugins {
               Light Wallpaper Selector
             ************************/
             light_wallpaper_select = new Gtk.FileChooserButton (_("Light Background"), Gtk.FileChooserAction.OPEN);
-            light_wallpaper_select.width_chars = 13;
+            light_wallpaper_select.width_chars = 15;
             light_wallpaper_select.hexpand = true;
 
             // Load file from preferences or set to default
@@ -73,7 +73,7 @@ namespace YinYang.Plugins {
               Dark Wallpaper Selector
             ************************/
             dark_wallpaper_select = new Gtk.FileChooserButton (_("Dark Background"), Gtk.FileChooserAction.OPEN);
-            dark_wallpaper_select.width_chars = 13;
+            dark_wallpaper_select.width_chars = 15;
             dark_wallpaper_select.hexpand = true;
 
             // Load file from preferences or set to default
