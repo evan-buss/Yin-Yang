@@ -38,7 +38,12 @@ namespace YinYang {
             var quit_action = new SimpleAction ("quit", null);
             quit_action.activate.connect (() => {
                 if (window != null) {
-                    window.destroy ();
+                    if (Services.Settings.get_default ().enable_auto_switch == true) {
+                        window.hide_on_delete ();
+                    } else {
+                        DBusServer.get_default ().indicator_state (false);
+                        app.quit ();
+                    }
                 }
             });
 
@@ -78,7 +83,7 @@ namespace YinYang {
 
         //  This only runs when there are command line args
         public override int command_line (ApplicationCommandLine command_line) {
-            stdout.printf ("Received command line args");
+            //  stdout.printf ("Received command line args");
             var headless_mode = false;
 
             //  "--headless" option
