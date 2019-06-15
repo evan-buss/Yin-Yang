@@ -44,8 +44,7 @@ public class YinYang.Indicator : Wingpanel.Indicator {
           Create Indicator Widgets
         ************************/
         display_widget = new Gtk.Image ();
-        display_widget.gicon = new ThemedIcon ("firefox-symbolic");
-        //  display_widget.gicon = new ThemedIcon ("com.github.evan-buss.yin-yang-symbolic");
+        display_widget.gicon = new ThemedIcon ("com.github.evan-buss.yin-yang-symbolic");
         display_widget.pixel_size = 16;
 
         popover_widget = new Widgets.PopoverWidget ();
