@@ -39,7 +39,6 @@ executable(
     gresource,
     dependencies: [
         dependency('gtk+-3.0'),
-        dependency('unity'),
         dependency('granite'),
         dependency('json-glib-1.0'),
     ],

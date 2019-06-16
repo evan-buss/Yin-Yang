@@ -30,7 +30,7 @@ public class YinYang.Indicator : Wingpanel.Indicator {
     public Indicator () {
         Object (
             code_name: "yin-yang-indicator",
-            display_name: _("Yin and Yang"),
+            display_name: _("Yin-Yang"),
             description: _("Toggle between light and dark application themes"),
             visible: true
         );

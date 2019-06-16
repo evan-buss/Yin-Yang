@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.evan-buss.yin-yang\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-05-31 00:30-0400\n"
+"POT-Creation-Date: 2019-06-15 14:41-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,39 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/YinYangWindow.vala:85
-msgid "Yin and Yang"
+#: src/YinYangWindow.vala:150
+msgid "Yin-Yang"
 msgstr ""
 
-#: src/YinYangWindow.vala:93
+#: src/YinYangWindow.vala:158
 msgid "Edit Settings (Ctrl+S)"
 msgstr ""
 
-#: src/Views/MainView.vala:39
+#: src/Views/MainView.vala:63
 msgid "Select Mode"
 msgstr ""
 
-#: src/Views/MainView.vala:43
+#: src/Views/MainView.vala:67
 msgid "Light"
 msgstr ""
 
-#: src/Views/MainView.vala:44
+#: src/Views/MainView.vala:68
 msgid "Dark"
 msgstr ""
 
-#: src/Views/SettingsView.vala:21
+#: src/Views/MainView.vala:91
+msgid "Enable Automatic Theme Switching"
+msgstr ""
+
+#: src/Views/MainView.vala:99
+msgid "Places icon in the Wingpanel"
+msgstr ""
+
+#: src/Views/MainView.vala:101
+msgid "Mode is toggled at sunset and sunrise"
+msgstr ""
+
+#: src/Views/SettingsView.vala:22
 msgid "Theme Settings"
 msgstr ""
 
@@ -65,21 +77,21 @@ msgstr ""
 msgid "Toggle Prefer Dark Setting"
 msgstr ""
 
-#: src/Plugins/FirefoxTheme.vala:51
+#: src/Plugins/FirefoxTheme.vala:56
 msgid "Firefox (Default Only)"
 msgstr ""
 
-#: src/Plugins/FirefoxTheme.vala:62 src/Plugins/GtkTheme.vala:50
+#: src/Plugins/FirefoxTheme.vala:68 src/Plugins/GtkTheme.vala:54
 #: src/Plugins/VSCodeTheme.vala:59
 msgid "Light Theme"
 msgstr ""
 
-#: src/Plugins/FirefoxTheme.vala:66 src/Plugins/GtkTheme.vala:54
-#: src/Plugins/VSCodeTheme.vala:66
+#: src/Plugins/FirefoxTheme.vala:77 src/Plugins/GtkTheme.vala:62
+#: src/Plugins/VSCodeTheme.vala:67
 msgid "Dark Theme"
 msgstr ""
 
-#: src/Plugins/GtkTheme.vala:40
+#: src/Plugins/GtkTheme.vala:44
 msgid "GTK Theme"
 msgstr ""
 
@@ -91,14 +103,14 @@ msgstr ""
 msgid "Visual Studio Code"
 msgstr ""
 
-#: src/Plugins/Wallpaper.vala:37
+#: src/Plugins/Wallpaper.vala:40
 msgid "Background"
 msgstr ""
 
-#: src/Plugins/Wallpaper.vala:49
+#: src/Plugins/Wallpaper.vala:56
 msgid "Light Background"
 msgstr ""
 
-#: src/Plugins/Wallpaper.vala:67
+#: src/Plugins/Wallpaper.vala:75
 msgid "Dark Background"
 msgstr ""

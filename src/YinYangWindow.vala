@@ -147,7 +147,7 @@ namespace YinYang {
             headerbar.get_style_context ().add_class ("default-decoration");
             headerbar.show_close_button = true;
             set_titlebar (headerbar);
-            title = _("Yin and Yang");
+            title = _("Yin-Yang");
 
             /************************
               Settings Toggle Button

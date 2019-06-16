@@ -4,7 +4,7 @@
   <id>com.github.evan-buss.yin-yang</id>
   <metadata_license>CC0-1.0</metadata_license>
   <project_license>AGPL-3.0</project_license>
-  <name>Yin and Yang</name>
+  <name>Yin-Yang</name>
   <summary>Automatically switch between light and dark application themes</summary>
   <developer_name>Evan Buss</developer_name>
   <provides>
@@ -22,12 +22,13 @@
       </screenshot>
   </screenshots>
   <description>
-    <p>Toggle between light and dark themes for a variety of different applications at the click of a button</p>
-    <p>Yin and Yang allows you to uniformly change theme for a growing list of desktop applications on command.</p>
+    <p>Toggle between light and dark themes for a variety of different applications.</p>
+    <p>Yin-Yang allows you to uniformly change the theme for many different desktop applications at the click of a button.</p>
     <p>Main features:</p>
     <ul>
       <li>Toggle between light and dark mode</li>
-      <li>Use Ctrl + Q or Escape to exit</li>
+      <li>Automatically switch between light and dark modes at specific time.</li>
+      <li>Use Ctrl + Q or Escape to close window</li>
     </ul>
     <p>Current Yin-Yang Integrations</p>
     <ul>
