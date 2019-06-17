@@ -75,8 +75,8 @@
   <url type="help">https://github.com/evan-buss/yin-yang/issues</url>
   <update_contact>evan.buss28@gmail.com</update_contact>
   <custom>
-     <value key="x-appcenter-color-primary">#231F20</value>
-     <value key="x-appcenter-color-primary-text">rgb(255, 255, 255)</value>
+     <value key="x-appcenter-color-primary">#95a3ab</value>
+     <value key="x-appcenter-color-primary-text">#ffffff</value>
      <value key="x-appcenter-suggested-price">1</value>
   </custom>
 </component>

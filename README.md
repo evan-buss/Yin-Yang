@@ -39,7 +39,6 @@ You'll need the following dependencies:
 * meson
 * valac
 * libgtk-3-dev (>= 3.10)
-* libunity-dev
 * libgranite-dev
 * libjson-glib-dev
 * libwingpanel-2.0-dev
