@@ -2,6 +2,8 @@
 
 > Yin-Yang brings automatic day and night theme-switching to Elementary OS
 
+> Yin-Yang will not be available in the ElementaryOS AppCenter. See [Issue #5](https://github.com/evan-buss/Yin-Yang/issues/5)
+
 <p align="center">
     <img align="center" src="https://raw.githubusercontent.com/evan-buss/Yin-Yang/master/screenshots/screenshot_1.png" alt="dark_mode">
 </p>
