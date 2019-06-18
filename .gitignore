@@ -7,3 +7,13 @@ src/build.py
 setup.py
 *~
 build/
+
+debian/
+!debian/source/format
+!debian/changelog
+!debian/compat
+!debian/control
+!debian/copyright
+!debian/rules
+
+obj-x86_64-linux-gnu
